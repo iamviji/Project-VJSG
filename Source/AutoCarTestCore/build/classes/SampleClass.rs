@@ -1,2 +1,0 @@
-AutoCarTestCore.SampleClass
-AutoCarTestAlgoLib.SampleClass
