@@ -16,6 +16,18 @@ public class ParallelParkingEventListener implements IEventListener {
     IEventDispatcher frontRightSensor;
     IEventDispatcher sideSensor;
     
+    enum State
+    {
+        STATE_IDLE,
+        STATE_AT_STOP_GATE,
+        STATE_PAKRING,
+        STATE_PARKED,
+        STATE_PARKED_ENOUGH,
+        STATE_MOVING_OUT,
+        STATE_MOVED_OUT,
+        STATE_FINISHED,
+        STEATE_FAILED,
+    };
     public ParallelParkingEventListener (IEventDispatcher stopSensor,
             IEventDispatcher rearLeftSensor,
             IEventDispatcher rearRightSensor,

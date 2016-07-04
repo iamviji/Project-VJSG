@@ -12,13 +12,13 @@ import java.util.logging.*;
 public class AutoCarTestAlgoPlane {
     public static int TIMER_RESOLUTION = 100;
     private static Logger logger = Logger.getLogger ("AutoCarTestLogger");
-    IntrDetectionSensorMsgListener ppEntry;
-    ProximitySensorMsgListener ppStop;
-    ProximitySensorMsgListener ppRearLeft;
-    ProximitySensorMsgListener ppRearRight;
-    ProximitySensorMsgListener ppFrontLeft;
-    ProximitySensorMsgListener ppFrontRight;
-    ProximitySensorMsgListener ppSide;
+    IntrDetectionSensorMsgListener ppEntrySensor;
+    ProximitySensorMsgListener ppStopSensor;
+    ProximitySensorMsgListener ppRearLeftSensor;
+    ProximitySensorMsgListener ppRearRightSensor;
+    ProximitySensorMsgListener ppFrontLeftSensor;
+    ProximitySensorMsgListener ppFrontRightSensor;
+    ProximitySensorMsgListener ppSideSensor;
        
     ParallelParkingEventListener ppEventListener;
     
@@ -26,12 +26,20 @@ public class AutoCarTestAlgoPlane {
     ISensorMsgDispatcher sensorMsgDispatcher;
     public AutoCarTestAlgoPlane ()
     {
-        ppEntry = new IntrDetectionSensorMsgListener  (ppEventListener);
-        ppFrontRight = new ProximitySensorMsgListener (ppEventListener, 100);
+        ppEventListener  = new ParallelParkingEventListener 
+                (
+                 ppEntrySensor, ppRearLeftSensor, ppRearRightSensor, 
+                 ppFrontLeftSensor, ppFrontRightSensor, ppSideSensor                        
+                );
+                
+        ppEntrySensor = new IntrDetectionSensorMsgListener  (ppEventListener);
+        ppFrontRightSensor = new ProximitySensorMsgListener (ppEventListener, 100);
         
         sensorMsgDispatcher = new SensorMsgDispatcher ();
-        sensorMsgDispatcher.registerListener ("P.En", ppEntry);
-        sensorMsgDispatcher.registerListener ("P.FR", ppFrontRight);
+        sensorMsgDispatcher.registerListener ("P.En", ppEntrySensor);
+        sensorMsgDispatcher.registerListener ("P.FR", ppFrontRightSensor);
+        
+        
     }
     public void handleSensorMsg (String msg)
     {
