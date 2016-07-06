@@ -1,0 +1,241 @@
+INFO  :  AutoCarTestCore.IntrDetectionSensorMsgListener -:- moveToIdleState -:- State is changed to IDLE
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- moveToIdleState -:- State is changed to IDLE
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- moveToIdleState -:- State is changed to IDLE
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- moveToIdleState -:- State is changed to IDLE
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- moveToIdleState -:- State is changed to IDLE
+INFO  :  AutoCarTestCore.IntrDetectionSensorMsgListener -:- moveToIdleState -:- State is changed to IDLE
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- registerListener -:- Registering P.GST
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- registerListener -:- Registering P.FR
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- registerListener -:- Registering P.FL
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- registerListener -:- Registering P.RR
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- registerListener -:- Registering P.RL
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- registerListener -:- Registering P.Sd
+INFO  :  ut.Ut -:- main -:- Reading Line : DI:P.GST:500
+INFO  :  AutoCarTestCore.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.GST:500
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.GST
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.GST
+INFO  :  AutoCarTestCore.IntrDetectionSensorMsgListener -:- handleMsg -:- Curent state is IDLE
+INFO  :  AutoCarTestCore.IntrDetectionSensorMsgListener -:- handleMsg -:- No Change in state
+INFO  :  ut.Ut -:- main -:- Reading Line : DI:P.GST:100
+INFO  :  AutoCarTestCore.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.GST:100
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.GST
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.GST
+INFO  :  AutoCarTestCore.IntrDetectionSensorMsgListener -:- handleMsg -:- Curent state is IDLE
+INFO  :  AutoCarTestCore.IntrDetectionSensorMsgListener -:- moveToSensedState -:- State is changed to SENSED
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- handleEvent -:- Entry, Src = AutoCarTestCore.IntrDetectionSensorMsgListener@4517d9a3 Event = AutoCarTestCore.EventObjectIn@372f7a8d
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- handleEvent -:- Current State is IDLE
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- print -:- Vehicle arrived at Parallel Parking Stop Gate
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- moveToStateAtGate -:- State is changed to AT GATE
+INFO  :  AutoCarTestCore.Timer -:- start -:- Starting timerAutoCarTestCore.Timer@2f92e0f4
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- handleTimeoutEvent -:- Currest state =STATE_AT_GATE
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- handleTimeoutEvent -:- TimetOut Event
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- print -:- Warning : Park as early as possible
+INFO  :  AutoCarTestCore.Timer -:- start -:- Starting timerAutoCarTestCore.Timer@2f92e0f4
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  ut.Ut -:- main -:- Reading Line : DI:P.FR:100
+INFO  :  AutoCarTestCore.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.FR:100
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.FR
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.FR
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Entry
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Current State is IDLE
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- moveToSensingState -:- State is changed to SENSING
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Generating EventObjectEntered
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- handleEvent -:- Entry, Src = AutoCarTestCore.ProximitySensorMsgListener@28a418fc Event = AutoCarTestCore.EventObjectEntered@5305068a
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- handleEvent -:- Current State is STATE_AT_GATE
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- print -:- Vehicle arrived inside parking area
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- moveToStateParking -:- State is changed to PARKING
+INFO  :  AutoCarTestCore.Timer -:- start -:- Starting timerAutoCarTestCore.Timer@2f92e0f4
+INFO  :  AutoCarTestCore.Timer -:- start -:- Starting timerAutoCarTestCore.Timer@1f32e575
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@1f32e575
+INFO  :  ut.Ut -:- main -:- Reading Line : DI:P.FL:100
+INFO  :  AutoCarTestCore.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.FL:100
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.FL
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.FL
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Entry
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Current State is IDLE
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- moveToSensingState -:- State is changed to SENSING
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Generating EventObjectEntered
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- handleEvent -:- Entry, Src = AutoCarTestCore.ProximitySensorMsgListener@279f2327 Event = AutoCarTestCore.EventObjectEntered@2ff4acd0
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- handleEvent -:- Current State is STATE_PARKING
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- print -:- Movement inside Parking Area
+INFO  :  AutoCarTestCore.Timer -:- start -:- Starting timerAutoCarTestCore.Timer@1f32e575
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@1f32e575
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@1f32e575
+INFO  :  ut.Ut -:- main -:- Reading Line : DI:P.FL:90
+INFO  :  AutoCarTestCore.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.FL:90
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.FL
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.FL
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Entry
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Current State is SENSING
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Generating EventObjectMoved
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- handleEvent -:- Entry, Src = AutoCarTestCore.ProximitySensorMsgListener@279f2327 Event = AutoCarTestCore.EventObjectMoved@54bedef2
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- handleEvent -:- Current State is STATE_PARKING
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- print -:- Movement inside Parking Area
+INFO  :  AutoCarTestCore.Timer -:- start -:- Starting timerAutoCarTestCore.Timer@1f32e575
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@1f32e575
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- handleTimeoutEvent -:- Currest state =STATE_PARKING
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- handleTimeoutEvent -:- TimetOut Event
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- handleTimeoutEvent -:- parking timer
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- print -:- Warning : Park as early as possible
+INFO  :  AutoCarTestCore.Timer -:- start -:- Starting timerAutoCarTestCore.Timer@2f92e0f4
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@1f32e575
+INFO  :  ut.Ut -:- main -:- Reading Line : DI:P.FL:80
+INFO  :  AutoCarTestCore.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.FL:80
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.FL
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.FL
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Entry
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Current State is SENSING
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Generating EventObjectMoved
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- handleEvent -:- Entry, Src = AutoCarTestCore.ProximitySensorMsgListener@279f2327 Event = AutoCarTestCore.EventObjectMoved@5caf905d
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- handleEvent -:- Current State is STATE_PARKING
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- print -:- Movement inside Parking Area
+INFO  :  AutoCarTestCore.Timer -:- start -:- Starting timerAutoCarTestCore.Timer@1f32e575
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@1f32e575
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@1f32e575
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@1f32e575
+INFO  :  ut.Ut -:- main -:- Reading Line : DI:P.FL:50
+INFO  :  AutoCarTestCore.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.FL:50
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.FL
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.FL
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Entry
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Current State is SENSING
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Generating EventObjectMoved
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- handleEvent -:- Entry, Src = AutoCarTestCore.ProximitySensorMsgListener@279f2327 Event = AutoCarTestCore.EventObjectMoved@27716f4
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- handleEvent -:- Current State is STATE_PARKING
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- print -:- Movement inside Parking Area
+INFO  :  AutoCarTestCore.Timer -:- start -:- Starting timerAutoCarTestCore.Timer@1f32e575
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@1f32e575
+INFO  :  ut.Ut -:- main -:- Reading Line : DI:P.FL:50
+INFO  :  AutoCarTestCore.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.FL:50
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.FL
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.FL
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Entry
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Current State is SENSING
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- No Movement is observed. Threshold=10 prevDistance=50 curDistance=50
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- handleTimeoutEvent -:- Currest state =STATE_PARKING
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- handleTimeoutEvent -:- TimetOut Event
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- handleTimeoutEvent -:- parking timer
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- print -:- Warning : Park as early as possible
+INFO  :  AutoCarTestCore.Timer -:- start -:- Starting timerAutoCarTestCore.Timer@2f92e0f4
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@1f32e575
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@1f32e575
+INFO  :  ut.Ut -:- main -:- Reading Line : DI:P.FL:50
+INFO  :  AutoCarTestCore.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.FL:50
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.FL
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.FL
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Entry
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Current State is SENSING
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- No Movement is observed. Threshold=10 prevDistance=50 curDistance=50
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@1f32e575
+INFO  :  ut.Ut -:- main -:- Reading Line : DI:P.FL:50
+INFO  :  AutoCarTestCore.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.FL:50
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.FL
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.FL
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Entry
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Current State is SENSING
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- No Movement is observed. Threshold=10 prevDistance=50 curDistance=50
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@1f32e575
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- handleTimeoutEvent -:- Currest state =STATE_PARKING
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- handleTimeoutEvent -:- TimetOut Event
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- print -:- Parked successfully. Verifying wait
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- handleTimeoutEvent -:- Gap FR:100 FL:50 RR:0 RL:0
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- moveToStateParked -:- State is changed to PARKED
+INFO  :  AutoCarTestCore.Timer -:- start -:- Starting timerAutoCarTestCore.Timer@2f92e0f4
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- print -:- Parking Complete. Move to next test angle=0 vehicle length=6900
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- removing timerAutoCarTestCore.Timer@1f32e575
+INFO  :  ut.Ut -:- main -:- Reading Line : DI:P.FL:50
+INFO  :  AutoCarTestCore.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.FL:50
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.FL
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.FL
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Entry
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Current State is SENSING
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- No Movement is observed. Threshold=10 prevDistance=50 curDistance=50
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  ut.Ut -:- main -:- Reading Line : DI:P.FL:50
+INFO  :  AutoCarTestCore.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.FL:50
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.FL
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.FL
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Entry
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Current State is SENSING
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- No Movement is observed. Threshold=10 prevDistance=50 curDistance=50
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  ut.Ut -:- main -:- Reading Line : DI:P.FL:50
+INFO  :  AutoCarTestCore.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.FL:50
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.FL
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.FL
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Entry
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Current State is SENSING
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- No Movement is observed. Threshold=10 prevDistance=50 curDistance=50
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- handleTimeoutEvent -:- Currest state =STATE_PARKED
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- handleTimeoutEvent -:- TimetOut Event
+INFO  :  AutoCarTestCore.ParallelParkingEventListener -:- print -:- Warning : Exit as early as possible
+INFO  :  AutoCarTestCore.Timer -:- start -:- Starting timerAutoCarTestCore.Timer@2f92e0f4
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  ut.Ut -:- main -:- Reading Line : DI:P.FL:50
+INFO  :  AutoCarTestCore.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.FL:50
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.FL
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.FL
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Entry
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Current State is SENSING
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- No Movement is observed. Threshold=10 prevDistance=50 curDistance=50
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4
+INFO  :  ut.Ut -:- main -:- Reading Line : DI:P.FL:50
+INFO  :  AutoCarTestCore.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.FL:50
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.FL
+INFO  :  AutoCarTestCore.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.FL
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Entry
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- Current State is SENSING
+INFO  :  AutoCarTestCore.ProximitySensorMsgListener -:- handleMsg -:- No Movement is observed. Threshold=10 prevDistance=50 curDistance=50
+INFO  :  ut.Ut -:- main -:- Reading Line : TT
+INFO  :  AutoCarTestCore.TimerManager -:- giveTick -:- While Tick handlingAutoCarTestCore.Timer@2f92e0f4

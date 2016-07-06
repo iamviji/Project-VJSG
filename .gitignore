@@ -1,3 +1,9 @@
 /Source/AutoCarTestCoreTest/dist/
 /Source/AutoCarTestCoreTest/build/
 /Source/AutoCarTestCoreIntgTest/nbproject/private/
+/Source/Core/src/nbproject/private/
+/Source/Core/src/build/
+/Source/Core/src/dist/
+/Source/Core/ut/nbproject/private/
+/Source/Core/ut/build/
+/Source/Core/ut/dist/
