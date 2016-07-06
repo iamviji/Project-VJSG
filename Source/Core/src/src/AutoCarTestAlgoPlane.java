@@ -40,8 +40,7 @@ public class AutoCarTestAlgoPlane {
         sensorMsgDispatcher.registerListener ("P.FL", ppFrontLeftSensor);
         sensorMsgDispatcher.registerListener ("P.RR", ppRearRightSensor);
         sensorMsgDispatcher.registerListener ("P.RL", ppRearLeftSensor);
-        sensorMsgDispatcher.registerListener ("P.Sd", ppSideSensor);
-
+        sensorMsgDispatcher.registerListener ("P.SD", ppSideSensor);
         
         
     }

@@ -64,7 +64,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
     }
     public void handleEvent (IEventDispatcher src, Event event)
     {
-        logger.info ("Entry, Src = " + src + " Event = "+event);
+        logger.info ("Entry , Src = " + src + " Event = "+event + " State="+this.state);
         if (state.equals (State.STATE_IDLE))
         {
             logger.info ("Current State is IDLE");
@@ -116,6 +116,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
             }
         } else if (this.state.equals(State.STATE_PARKED))
         {
+            logger.info ("Current State is STATE_PARKED");
             if ( (src == this.sideSensor && event instanceof EventObjectIn)
                     ||
                     (event instanceof EventObjectTouched)
@@ -125,6 +126,10 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
                     print ("Object Touched so failed");
             } else if (src == this.stopSensor && event instanceof EventObjectIn)
             {
+                moveToStatePassed ();                
+            } else
+            {
+                logger.info ("Unhandled");
             }
         } else
         {
@@ -206,7 +211,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
             {
                 moveToStateFailed ();
                 System.out.println ("Testing Failed due to Parking exit timeout\n");
-            }  
+            } 
         } else
         {
             logger.warning ("Unhandled event");
@@ -241,6 +246,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
         logger.info ("State is changed to FAILED");
         this.timer.stop();
         this.idleTimer.stop ();
+        print ("Parallel Parking is finished : FAIL");
     }
    private void moveToStatePassed ()
     {
@@ -248,6 +254,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
         logger.info ("State is changed to PASSED");
         this.timer.stop();
         this.idleTimer.stop ();
+        print ("Parallel Parking is finished : PASS");
     } 
     private void print (String str)
     {
