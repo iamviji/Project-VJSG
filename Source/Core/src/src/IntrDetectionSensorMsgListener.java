@@ -34,6 +34,7 @@ public class IntrDetectionSensorMsgListener extends SensorMsgListener {
     public void handleMsg (String msg)
     {
         String str [] = msg.split (":");
+                    
         int curDistance = Integer.parseInt (str [2]);
         
         if (state.equals (State.STATE_IDLE))
