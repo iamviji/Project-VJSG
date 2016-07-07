@@ -47,6 +47,7 @@ public class AutoCarTestAlgoPlane {
     public void handleSensorMsg (String msg)
     {
         logger.info (msg);
+        msg = msg.replace ("\n","");
         sensorMsgDispatcher.handleMsg (msg);
     }
     public void reset (){
