@@ -1,0 +1,105 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'testreg/style.css' %}" >
+    {% if applicant %}
+        <h2> 
+            <form align="center"> 
+                <font  face="Calibri" color="white">Applicant Details </font> 
+            </form>
+        </h2>
+    <table width="450px">
+        <tr>
+        <td>
+            <font  face="Calibri" color="white" for="first_name">First Name:</font>
+        </td>
+        <td>
+            <font  face="Calibri" color="white" for="first_name"> {{ applicant.FirstName }}</font>
+        </td>
+        </tr>
+        
+        <tr>
+        <td>
+            <font  face="Calibri" color="white" for="last_name">Last Name:</font>
+        </td>
+        <td>
+            <font  face="Calibri" color="white" for="first_name"> {{ applicant.LastName }}</font>
+        </td>
+        </tr>
+        
+        <tr>
+        <td>
+            <font  face="Calibri" color="white" for="address">Address:</font>
+        </td>
+        <td>
+            <textarea readonly rows="6" cols="32" id="address" name="address"> {{ applicant.Address }} </textarea>
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+            <font  face="Calibri" color="white" for="sex">Gender:</font>
+        </td>
+        <td>
+            <font  face="Calibri" color="white" name="sex"> {{ applicant.Sex }}</font>
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+            <font  face="Calibri" color="white" for="bdate">Birth Date:</font>
+        </td>
+        <td>
+            <font  face="Calibri" color="white" name="bdate"> {{ applicant.DateOfBirth|date:"M d, Y"  }}</font>
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+            <font  face="Calibri" color="white" for="idtype">Proof of Address:</font>
+        </td>
+        <td>
+            <font  face="Calibri" color="white" name="idtype"> {{ applicant.IDType  }}</font>
+        </td>
+        </tr>
+        
+        <tr>
+        <td>
+            <font  face="Calibri" color="white" for="id">ID:</font>
+        </td>
+        <td>
+            <font  face="Calibri" color="white" name="id"> {{ applicant.UniqueID  }}</font>
+        </td>
+        </tr>
+        
+        <tr>
+        <td>
+            <font  face="Calibri" color="white" for="nation">Nationality:</font>
+        </td>
+        <td>
+            <font  face="Calibri" color="white" name="nation"> {{ applicant.Nationality  }}</font> 
+        </td>
+        </tr>   
+        <tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/>
+
+        <tr>
+            <td>
+                <form method="get" action="{% url 'testreg:index' %}">
+                    <button type="submit">Modify</button>
+                </form>
+            </td>
+            <td>
+                <form method="get" action="{% url 'testreg:deletereg' applicant.id %}">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+            <td>
+                <form method="get" action="{% url 'testreg:index' %}">
+                    <button type="submit">Home</button>
+                </form>
+            </td>
+        </tr>
+    </table> 
+    {% else %}
+        <p>No The specified applicant isn't registered.</p>
+    {% endif %}
+ </link>

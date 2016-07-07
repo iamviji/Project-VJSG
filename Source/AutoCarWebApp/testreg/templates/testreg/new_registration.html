@@ -1,0 +1,118 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'testreg/style.css' %}" >
+    <head>
+        <title>  Register a candidate </form></title>
+    </head>
+    <h2> 
+        <form align="center"> 
+        <font  face="Calibri" color="white">Candidate Registration </font> 
+        </form>
+    </h2>
+    
+
+    {% if applicant %}
+    {% endif %}
+    <form action="{% url 'testreg:newapl' %}" method="POST">
+    {% csrf_token %}    
+        <table width="450px">
+        <tr>
+        <td>
+            <font  face="Calibri" color="white" for="first_name">First Name:</font>
+        </td>
+        <td>
+            <input type="text" id="first_name" name="first_name" maxlength="50" size="30">
+        </td>
+        </tr>
+        
+        <tr>
+        <td>
+            <font  face="Calibri" color="white" for="last_name">Last Name:</font>
+        </td>
+        <td>
+            <input type="text" id="last_name" name="last_name" maxlength="50" size="30">
+        </td>
+        </tr>
+        <tr>
+        <td>
+            <font  face="Calibri" color="white" for="address">Address:</font>
+        </td>
+        <td>
+            <textarea rows="6" cols="32" id="address" name="address"> </textarea>
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+            <font  face="Calibri" color="white" for="sex">Gender:</font>
+        </td>
+        <td>
+            <font  face="Calibri" color="white" for="sex">
+                <input type="radio" id="sex" name="sex" value="male">Male</input>
+                <input type="radio" id="sex" name="sex" value="female">Female</input>
+            </font>
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+            <font  face="Calibri" color="white" for="bdate">Birth Date:</font>
+        </td>
+        <td>
+            <input type="date" id="bdate" name="bdate">
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+            <font  face="Calibri" color="white" for="idtype">Proof of Address:</font>
+        </td>
+        <td>
+            <font  face="Calibri" color="white" for="idtype">
+            <input type="radio" id="idtype" name="idtype" value="aadhar">Aadhar</input>
+            <input type="radio" id="idtype" name="idtype" value="pan">PAN</input>
+            </font>
+        </td>
+        </tr>
+        
+        <tr>
+        <td>
+            <font  face="Calibri" color="white" for="uid">ID:</font>
+        </td>
+        <td>
+            <input type="text" id="uid" name="uid" maxlength="50" size="30">
+        </td>
+        </tr>
+        
+        <tr>
+        <td>
+            <font  face="Calibri" color="white" for="nation">Nationality:</font>
+        </td>
+        <td>
+        <font  face="Calibri">
+            <input type="text" id="nation" name="nation" list="nationality" />
+            <datalist id="nationality">
+                <option>India</option>
+                <option>British</option>
+                <option>US</option>
+                <option>French</option>
+            </datalist>
+        </font> 
+        </td>
+        </tr>
+    
+        <tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/>
+        <tr>
+        <td><td><td>
+        <td>
+            <font  face="Calibri">
+                <input type="submit" value="Register">
+            </font>
+        </td>
+        </td></td></td>
+        </tr>        
+    </form>
+            <form method="get" action="{% url 'testreg:index' %}">
+                <button type="submit">Cancel</button>
+            </form>
+ </link>

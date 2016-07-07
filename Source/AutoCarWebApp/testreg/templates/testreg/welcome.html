@@ -1,0 +1,35 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'testreg/style.css' %}" >
+    <head>
+        <title>Welcome</title>
+    </head>
+    <h1 style="text-align: center;"> 
+        <font  face="Calibri" color="white">Welcome to computerized driving test </font>
+    </h1>
+
+    <font  face="Calibri" size=4 color="white" for="selectoption">Choose your option: </font>
+    <table width="450px">
+        <br>
+        <tr>
+        <br>
+        <td>
+            <font  face="Calibri" color="white" for="newapplicant">Click <a href="{% url 'testreg:newreg' %}">here </a> to add a New Applicant:</font>
+        </td>
+        </tr>
+        <tr>
+        
+        <td>
+        <br>
+            <font  face="Calibri" color="white" for="newapplicant">Click <a href="{% url 'testreg:listreg' %}">here </a> to view list of Applicants:</font>
+        </td>
+        
+        </tr>
+        <tr>
+        <td>
+        <br>
+            <font  face="Calibri" color="white" for="newapplicant">Click <a href="CandidateRegistration.html">here </a> to view result of a Applicants</font>
+        </td>
+        </tr>
+    </table>
+</link>
