@@ -1,0 +1,21 @@
+<h1 style="text-align: center;"><span style="color: #993366;"><strong>Welcome to RTO Driving Test</strong></span></h1>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<form action="{% url 'testreg:newreg' %}" method="POST">   
+{% csrf_token %} 
+    <input type=submit value="New Applicant"> <label> Click here for new registration </label>
+    <p>&nbsp;</p> 
+</form>    
+
+<form action="{% url 'testreg:listreg' %}" method="POST">   
+{% csrf_token %} 
+    <input type=submit value="List Applicants"> <label> Click here for viewing existing registrations </label>
+    <p>&nbsp;</p> 
+</form>  
+
+<form action="{% url 'testreg:findreg' %}" method="POST">   
+{% csrf_token %} 
+    <input type=submit value="Find Result">  <label> Click here for finding the result </label>
+    <p>&nbsp;</p>
+</form>
