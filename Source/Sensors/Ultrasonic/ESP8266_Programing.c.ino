@@ -24,7 +24,7 @@ class TrasnportModule
 #define ANDROID_APP_UDP_PORT "5432"
 #define MAX_RETRY       20
 #define BOARD_RESET_PIN   10
-const char CWJAP[] PROGMEM = "AT+CWJAP=\""
+
 #define sw_serial_rx_pin 2 //  Connect this pin to TX on the esp8266
 #define sw_serial_tx_pin 3 //  Connect this pin to RX on the esp8266
 #define esp8266_reset_pin 4 // Connect this pin to CH_PD on the esp8266, not reset. (let reset be unconnected)
@@ -38,31 +38,37 @@ class Wifi : public TrasnportModule
     char  pAndroidIp[30];
     char  pTcpPort[6];
     char  pUdpPort[6];
-public:
+  public:
     Wifi()
     {
       sprintf(pAndroidIp, "%s", ANDROID_APP_IP);
       sprintf(pTcpPort, "%s", ANDROID_APP_TCP_PORT);
       sprintf(pUdpPort, "%s", ANDROID_APP_UDP_PORT);
     }
-    
+
     void configure()
     {
       bool lRet = false;
       int lRetryCount = 1;
       pSwSerial.begin(9600);
-      Serial.println("Starting wifi");
+      Serial.println("Disconnect from Access point ");
 
+      //Make sure to exit from AP and reconnect it
+      pWifi.disconnectFromAP();
+      delay(4000);
+
+      Serial.println("Connecting to Access poing ");
       //wifi.setTransportToTCP();// this is also default
       pWifi.setTransportToUDP();//Will use UDP when connecting to server, default is TCP
 
       pWifi.endSendWithNewline(true); // Will end all transmissions with a newline and carrage return ie println.. default is true
 
       pWifi.begin();
-
+      Serial.println("Wifi started ");
       do
       {
         lRet = pWifi.connectToAP(MY_SSID_AP, MY_AP_PASSWORD);
+        delay(2000);
 
         if ( false == lRet )
         {
@@ -70,6 +76,17 @@ public:
           lRetryCount++;
           delay(1000);
           //retry after 1 sec
+        }
+        char *lIp = pWifi.getIP();
+        if ( '\0' == lIp[0] )
+        {
+          Serial.println("Failed to connect to Access Point. Retrying ");
+          delay(2000);
+        } else
+        {
+          Serial.println(" ");
+          Serial.print("Got IP from Access Point:");
+          Serial.println(lIp);
         }
       } while ( lRet == false && lRetryCount < MAX_RETRY );
       Serial.println("Successfully connected to Access Point ");
@@ -82,39 +99,47 @@ public:
         Serial.println("MAX retry failed to connect to AP. Rebooting Board... ");
         return;
       }
-      //Connect to android app
-      do
+
+      if (!pWifi.isConnectedToServer())
       {
-        lRet = pWifi.connectToServer(ANDROID_APP_IP, ANDROID_APP_UDP_PORT);
-        lRet = true;
+        Serial.println("Connecting to Android APP... ");
+        //Connect to android app
+        do
+        {
+          lRet = pWifi.connectToServer(ANDROID_APP_IP, ANDROID_APP_UDP_PORT);
+          lRet = true;
+          if ( false == lRet )
+          {
+            Serial.println("Failed to connect to Android APP ");
+            delay(1000);
+            //retry after 1 sec
+            lRetryCount++;
+          }
+        } while ( lRet == false && lRetryCount < MAX_RETRY );
+
         if ( false == lRet )
         {
-          Serial.println("Failed to connect to Android APP ");
-          delay(1000);
-          //retry after 1 sec
-          lRetryCount++;
+          //still not connected. Wait after some time.
+          //reboot board;
+          Serial.println("MAX retry failed to connect Android APP. Rebooting Board... ");
         }
-      } while ( lRet == false && lRetryCount < MAX_RETRY );
-
-      if ( false == lRet )
+      } else
       {
-        //still not connected. Wait after some time.
-        //reboot board;
-        Serial.println("MAX retry failed to connect Android APP. Rebooting Board... ");
+        Serial.println("Already connected to Android APP... ");
       }
     }//configure Ends
 
     //send data
-    virtual void sendData(char aInData[],int aInLen = 0)
+    virtual void sendData(char aInData[], int aInLen = 0)
     {
       pWifi.send(SERVER, aInData);
     }//sendData Ends
 
     void receiveData()
     {
-      
+
     }//end receiveData
-    
+
 };
 
 SoftwareSerial Wifi::pSwSerial(sw_serial_rx_pin, sw_serial_tx_pin);
@@ -156,10 +181,10 @@ class Ultrasonic : public Sensor
     {
       pTrigPin =  TRIG_PIN;
       pEchoPin = ECHO_PIN;
-      strncpy(pType, "Px",2);
-      pType[2]='\0';
-      strncpy(pPosition, "P1",2);
-      pPosition[2]='\0';
+      strncpy(pType, "Px", 2);
+      pType[2] = '\0';
+      strncpy(pPosition, "P1", 2);
+      pPosition[2] = '\0';
     }
 
     void whoAmI(char aOutBuf[])
@@ -216,7 +241,7 @@ void configureTransport()
   //Get a factory class to get
   //instnace of Transport Object
   // as of now am just doing Wifi
-  gTransport = new Wifi();  
+  gTransport = new Wifi();
   gTransport->configure();
 }
 
@@ -225,7 +250,7 @@ void setup()
   Serial.begin(9600);
   while (!Serial)
     ;
-    Serial.println("Setup In progress...");
+  Serial.println("Setup In progress...");
   configureTransport();
   configureSensor();
 }
@@ -236,14 +261,14 @@ void loop()
 
   //As on just connect to Server/Androidapp
   Serial.println("Inside Loop, ");
-  if (gSensor != NULL && gTransport !=NULL )
+  if (gSensor != NULL && gTransport != NULL )
   {
     gSensor->getData(gBuf);
     gTransport->sendData(gBuf);
-    Serial.println("Data Sent plz check ");
+    //Serial.println("Data Sent plz check ");
   }
   delay(1000);
-  
+
 #if 0
   //Send a ping once in a while..
   if (millis() > nextPing) {
@@ -273,42 +298,6 @@ void loop()
 
 //Listen for serial input from the console
 void serialEvent() {
-//in Future we need it
+  //in Future we need it
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
