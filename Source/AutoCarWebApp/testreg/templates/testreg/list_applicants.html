@@ -1,0 +1,44 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'testreg/style.css' %}" >
+    {% if all_applicants %}
+        <head>
+            <title>  List all the applicants </form></title>
+        </head>
+        <h2> 
+            <form align="center"> 
+                <font  face="Calibri" color="white">List of Registered Applicants </font> 
+            </form>
+        </h2>
+
+        <table width="450px">
+            <tr> 
+                <td>
+                    <font  face="Calibri" color="black" for="name"><b>Name</b></font>
+                </td>
+                <td>
+                    <font  face="Calibri" color="black" for="dob"><b>Birth Date</b></font>
+                </td>
+                <td>
+                    <font  face="Calibri" color="black" for="id"><b>ID</b></font>
+                </td>
+            </tr> 
+        {% for applicant in all_applicants %}
+            <tr>
+                <td>
+                    <a href="{% url 'testreg:detail' applicant.id %}"><font  face="Calibri" color="white" for="name">{{ applicant.FirstName }} {{ applicant.LastName }}</font></a>
+                </td>
+                <td>
+                    <font  face="Calibri" color="white" for="dob">{{ applicant.DateOfBirth|date:"M d, Y" }}</font>
+                </td>
+                <td>
+                    <font  face="Calibri" color="white" for="id">{{ applicant.UniqueID }}</font>
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <p>No applicants are registered.</p>
+    {% endif %}
+            
+</link>

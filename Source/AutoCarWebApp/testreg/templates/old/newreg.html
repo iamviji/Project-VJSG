@@ -1,0 +1,53 @@
+<form action="{% url 'testreg:newapl' %}" method="POST">
+{% csrf_token %}
+    <h1 style="text-align: left;">Enter the applicant details</h1>
+    <p>&nbsp;</p>
+    <label for="first_name">First Name: </label>
+    <input id="first_name" type="text" name="first_name">
+    <p>&nbsp;</p>
+    
+    <label for="last_name">Last Name: </label>
+    <input id="last_name" type="text" name="last_name">
+    <p>&nbsp;</p>
+    
+    <label for="address">Address: </label>
+    <input id="address" type="text" name="address" cols="40"  rows="5"  style="width:200px; height:50px;">
+    <p>&nbsp;</p>
+    
+    <label for="sex">Sex:     </label>
+    <select id="sex" name="sex">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select>
+    <p>&nbsp;</p>
+
+    <label> Date of Birth: </label>
+    <input type="date" id="bdate" name="bdate">
+    <p>&nbsp;</p>
+    
+    <label for="idtype">Type of ID: </label>
+    <select id="idtype" name="idtype">
+        <option value="Aadhaar">Aadhaar</option>
+        <option value="PAN">PAN</option>
+    </select>
+    <p>&nbsp;</p>
+    
+    <label for="id">ID: </label>
+    <input id="id" type="text" name="id">
+    <p>&nbsp;</p>
+
+    <label for="nation">Nationality: </label>
+    <input type="text" id="nation" name="nation" list="nationality" />
+    <datalist id="nationality">
+        <option>India</option>
+        <option>British</option>
+        <option>US</option>
+        <option>French</option>
+    </datalist>
+    <p>&nbsp;</p>           
+    
+    <input type="submit" value="Register">
+    <input type="submit" value="Cancel">
+    <p>&nbsp;</p>
+
+</form>

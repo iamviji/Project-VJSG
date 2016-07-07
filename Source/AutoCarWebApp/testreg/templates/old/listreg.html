@@ -1,0 +1,10 @@
+{% if all_applicants %}
+    <th><td>FirstName</td>    <td>Last Name</td>  <td>BirthDate</td> <td>ID</td> </th>
+    <ul>
+    {% for applicant in all_applicants %}
+        <li><tr><td>{{ applicant.FirstName }}</td> <td>{{ applicant.LastName }}</td> <td> {{ applicant.DateOfBirth }} </td> <td> {{ applicant.UniqueID }}</td> </tr></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No applicants are registered.</p>
+{% endif %}
