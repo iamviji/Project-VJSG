@@ -14,20 +14,32 @@ class Applicant(models.Model):
         ('O', 'Other')
     )
     Sex = models.CharField(max_length = 1, choices=SEX_TYPES, default='M')
-    DateOfBirth = models.DateTimeField('birth date')
+    DateOfBirth = models.DateField('birth date')
     Nationality = models.CharField(max_length = 100)
     ID_TYPES = (
         ('A', 'Aadhaar'),
         ('P', 'PAN'),
+        ('O', 'Other')
     )
     IDType = models.CharField(max_length = 1, choices=ID_TYPES)
     UniqueID = models.CharField(max_length = 50)
-    TestID = models.IntegerField(default = 0)
+    BiometricID = models.IntegerField(default = 0)
     def __str__(self):
         return self.FirstName
+
+def user_directory_path(instance, filename):
+    applicant = instance.applicant
+    user = applicant.FirstName + "_" + applicant.LastName + "_" + str(applicant.id)
+    return 'user_{0}/{1}/{2}'.format(user, instance.id, filename)
     
 class Test(models.Model):
-    TestID = models.ForeignKey(Applicant)
-    TestResult = models.IntegerField(default = 0)
-    TestData = models.CharField(max_length = 2000)
+    applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
+    TestDate = models.DateTimeField('Test date')
+    RESULT_TYPES = (
+        ('P', 'PASS'),
+        ('F', 'FAIL'),
+        ('C', 'CANCELLED')
+    )
+    TestResult = models.CharField(max_length = 1, choices=RESULT_TYPES)
+    TestData = models.FileField(upload_to=user_directory_path)
     

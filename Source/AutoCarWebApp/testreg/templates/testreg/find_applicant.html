@@ -1,0 +1,69 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'testreg/style.css' %}" >
+    <head>
+        <title>  Fine the candidate information</form></title>
+    </head>
+    <h2> 
+        <form align="center"> 
+        <font  face="Calibri" color="white">Applicant search </font> 
+        </form>
+    </h2>
+    
+
+    <form action="{% url 'testreg:searchreg' %}" method="POST">
+    {% csrf_token %}    
+    <table width="450px">
+        <tr>
+        <td>
+            <font  face="Calibri" color="white" for="first_name">First Name:</font>
+        </td>
+        <td>
+            <input type="text" id="first_name" name="first_name" maxlength="50" size="30">
+        </td>
+        </tr>
+        
+        <tr>
+        <td>
+            <font  face="Calibri" color="white" for="last_name">Last Name:</font>
+        </td>
+        <td>
+            <input type="text" id="last_name" name="last_name" maxlength="50" size="30">
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+            <font  face="Calibri" color="white" for="bdate">Birth Date:</font>
+        </td>
+        <td>
+            <input type="date" id="bdate" name="bdate">
+        </td>
+        </tr>
+       
+        <tr>
+        <td>
+            <font  face="Calibri" color="white" for="uid">ID:</font>
+        </td>
+        <td>
+            <input type="text" id="uid" name="uid" maxlength="50" size="30">
+        </td>
+        </tr>
+          
+        <tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/>
+        <tr>
+        <td/>
+        <td>
+            <font  face="Calibri">
+                <input type="submit" value="Search">
+            </font>
+        </td>       
+    </form>
+        <td>
+            <form method="get" action="{% url 'testreg:index' %}">
+                <button type="submit">Back</button>
+            </form>
+        </td>
+        </tr>         
+    </table>       
+ </link>

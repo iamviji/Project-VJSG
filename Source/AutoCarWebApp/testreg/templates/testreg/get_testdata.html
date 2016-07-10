@@ -1,0 +1,35 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'testreg/style.css' %}" >
+    <head>
+        <title> Upload Test Data</form></title>
+    </head>
+    <h2> 
+        <form align="center"> 
+        <font  face="Calibri" color="white">Upload Test Data </font> 
+        </form>
+    </h2>
+
+    <table width="450px">   
+{% if applicant %}
+    <form action="{% url 'testreg:save_testdata' applicant.id  %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>{{ form.non_field_errors }}</p>
+            <p>{{ form.TestData.label_tag }} {{ form.TestData.help_text }}</p>
+            <p>
+                {{ form.TestData.errors }}
+                {{ form.TestData }}
+            </p>
+            <p><input type="submit" value="Upload" /></p>
+    {% else %}
+        <p>No The specified applicant isn't registered.</p>
+    {% endif %}             
+        <tr>
+            <td>
+                <form method="get" action="{% url 'testreg:index' %}">
+                    <button type="submit">Home</button>
+                </form>
+            </td>
+        </tr>
+    </table>            
+ </link>

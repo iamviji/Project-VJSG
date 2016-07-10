@@ -1,6 +1,7 @@
 {% load staticfiles %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'testreg/style.css' %}" >
+    <table width="450px">
     {% if all_applicants %}
         <head>
             <title>  List all the applicants </form></title>
@@ -11,7 +12,6 @@
             </form>
         </h2>
 
-        <table width="450px">
             <tr> 
                 <td>
                     <font  face="Calibri" color="black" for="name"><b>Name</b></font>
@@ -36,9 +36,16 @@
                 </td>
             </tr>
         {% endfor %}
-        </table>
+        <tr/><tr/><tr/>
     {% else %}
         <p>No applicants are registered.</p>
     {% endif %}
-            
+        <tr>
+            <td>
+                <form method="get" action="{% url 'testreg:index' %}">
+                    <button type="submit">Back</button>
+                </form>
+            </td>
+        </tr>
+    </table>          
 </link>

@@ -1,13 +1,12 @@
 {% load staticfiles %}
-
 <link rel="stylesheet" type="text/css" href="{% static 'testreg/style.css' %}" >
+    <table width="450px">
     {% if applicant %}
         <h2> 
             <form align="center"> 
                 <font  face="Calibri" color="white">Applicant Details </font> 
             </form>
         </h2>
-    <table width="450px">
         <tr>
         <td>
             <font  face="Calibri" color="white" for="first_name">First Name:</font>
@@ -79,11 +78,34 @@
             <font  face="Calibri" color="white" name="nation"> {{ applicant.Nationality  }}</font> 
         </td>
         </tr>   
+        
+        <tr>
+        <td>
+            <font  face="Calibri" color="white" for="bid">Biometric ID:</font>
+        </td>
+        <td>
+            <font  face="Calibri" color="white" name="bid"> {{ applicant.BiometricID  }}</font>
+        </td>
+        </tr>
+
+        <tr>
+        <td>
+            <font  face="Calibri" color="white" for="bid">Test Results:</font>
+        </td>
+        {% for test in applicant.test_set.all %}
+        <tr>
+            <td/>
+            <td>    
+                <font  face="Calibri" color="white" for="bid"> {{ test.TestResult }}    ({{ test.TestDate|date:"M d, Y" }})</font>
+            </td>
+        </tr>
+        {% endfor %}
+                
         <tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/>
 
         <tr>
             <td>
-                <form method="get" action="{% url 'testreg:index' %}">
+                <form method="get" action="{% url 'testreg:updatereg' applicant.id %}">
                     <button type="submit">Modify</button>
                 </form>
             </td>
@@ -93,13 +115,22 @@
                 </form>
             </td>
             <td>
+                <form method="get" action="{% url 'testreg:get_testdata' applicant.id %}">
+                    <button type="submit">Submit Test Data</button>
+                </form>
+            </td>
+        </tr>
+    {% else %}
+        <p>No The specified applicant isn't registered.</p>
+    {% endif %}        
+        <tr>
+            <td> </td>
+            <td>
                 <form method="get" action="{% url 'testreg:index' %}">
                     <button type="submit">Home</button>
                 </form>
             </td>
         </tr>
     </table> 
-    {% else %}
-        <p>No The specified applicant isn't registered.</p>
-    {% endif %}
+
  </link>

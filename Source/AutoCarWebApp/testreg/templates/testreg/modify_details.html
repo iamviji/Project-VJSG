@@ -1,24 +1,24 @@
 {% load staticfiles %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'testreg/style.css' %}" >
-    <head>
-        <title>  Register a candidate </form></title>
-    </head>
+    <head><title>  Modify the candidate details</title></head>
     <h2> 
         <form align="center"> 
-        <font  face="Calibri" color="white">Candidate Registration </font> 
+        <font  face="Calibri" color="white">Update Applicant Details </font> 
         </form>
     </h2>
     
-    <table width="450px">
-    <form action="{% url 'testreg:newapl' %}" method="POST">
+
+{% if applicant %}
+    <form action="{% url 'testreg:modifyreg' applicant.id %}" method="POST">
     {% csrf_token %}    
+        <table width="450px">
         <tr>
         <td>
             <font  face="Calibri" color="white" for="first_name">First Name:</font>
         </td>
         <td>
-            <input type="text" id="first_name" name="first_name" maxlength="50" size="30">
+            <input type="text" id="first_name" name="first_name" maxlength="50" size="30" value={{ applicant.FirstName }}>
         </td>
         </tr>
         
@@ -27,7 +27,7 @@
             <font  face="Calibri" color="white" for="last_name">Last Name:</font>
         </td>
         <td>
-            <input type="text" id="last_name" name="last_name" maxlength="50" size="30">
+            <input type="text" id="last_name" name="last_name" maxlength="50" size="30" value={{ applicant.LastName }}>
         </td>
         </tr>
         <tr>
@@ -35,7 +35,7 @@
             <font  face="Calibri" color="white" for="address">Address:</font>
         </td>
         <td>
-            <textarea rows="6" cols="32" id="address" name="address"> </textarea>
+            <textarea rows="6" cols="32" id="address" name="address">{{ applicant.Address }}</textarea>
         </td>
         </tr>
 
@@ -56,7 +56,7 @@
             <font  face="Calibri" color="white" for="bdate">Birth Date:</font>
         </td>
         <td>
-            <input type="date" id="bdate" name="bdate">
+            <input type="date" id="bdate" name="bdate" value={{ applicant.DateOfBirth }}>
         </td>
         </tr>
 
@@ -77,7 +77,7 @@
             <font  face="Calibri" color="white" for="uid">ID:</font>
         </td>
         <td>
-            <input type="text" id="uid" name="uid" maxlength="50" size="30">
+            <input type="text" id="uid" name="uid" maxlength="50" size="30" value={{ applicant.UniqueID }}>
         </td>
         </tr>
         
@@ -87,7 +87,7 @@
         </td>
         <td>
         <font  face="Calibri">
-            <input type="text" id="nation" name="nation" list="nationality" />
+            <input type="text" id="nation" name="nation" list="nationality" value={{ applicant.Nationality }}>
             <datalist id="nationality">
                 <option>India</option>
                 <option>British</option>
@@ -100,18 +100,17 @@
     
         <tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/><tr/>
         <tr>
-        <td> </td>
-        <td> 
-            <font  face="Calibri">
-                <input type="submit" value="Register">
-            </font>
-        </td>     
-    </form>
+        <td><td><td>
         <td>
-            <form method="get" action="{% url 'testreg:index' %}">
-                <button type="submit">Cancel</button>
-            </form>
+            <font  face="Calibri">
+                <input type="submit" value="Update">
+            </font>
         </td>
-        </tr>
-    </table>                 
+        </td></td></td>
+        <td><button type="cancel" onclick="welcome.html">Cancel</button></td>
+        </tr>        
+    </form> 
+{% else %}
+        <p>No The specified applicant isn't registered.</p>
+{% endif %}             
  </link>
