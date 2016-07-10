@@ -19,8 +19,7 @@ public class IntrDetectionSensorMsgListener extends SensorMsgListener {
         STATE_SENSED,
     };
     static final int MAX_DISTANCE = 500;
-    static final int NO_MOVEMENT_TIMEOUT_VALUE = 200;
-    static final int SENSOR_MSG_FREQ = 50;
+    public int detectionThreshold = 500;
     State state;
     public IntrDetectionSensorMsgListener (IEventListener eventListener)
     {
@@ -34,12 +33,13 @@ public class IntrDetectionSensorMsgListener extends SensorMsgListener {
     public void handleMsg (String msg)
     {
         String str [] = msg.split (":");
+                    
         int curDistance = Integer.parseInt (str [2]);
         
         if (state.equals (State.STATE_IDLE))
         {
             logger.info ("Curent state is IDLE");
-            if (curDistance < MAX_DISTANCE)
+            if (curDistance < detectionThreshold)
             {
                 moveToSensedState (); 
                 this.eventListener.handleEvent(this, new EventObjectIn ());
@@ -50,7 +50,7 @@ public class IntrDetectionSensorMsgListener extends SensorMsgListener {
         } else if (state.equals(State.STATE_SENSED))
         {
             logger.info ("Curent state is SENSED");
-            if (curDistance >= MAX_DISTANCE)
+            if (curDistance >= detectionThreshold)
             {
                 moveToIdleState (); 
                 this.eventListener.handleEvent(this, new EventObjectOut ());

@@ -11,16 +11,20 @@ import java.util.logging.*;
  */
 public class AutoCarTestAlgoPlane {
     public static int TIMER_RESOLUTION = 100;
+    public static int PROXIMITY_THRESHOLD = 200;
+    public static int INTR_DETECTION_SIDE_THRESHOLD =3000; 
+    public static int INTR_DETECTION_ENTRY_THRESHOLD =1500;
     private static Logger logger = Logger.getLogger ("AutoCarTestLogger");
 
     ParallelParkingEventListener ppEventListener = new ParallelParkingEventListener ();
     IntrDetectionSensorMsgListener ppEntrySensor;
     IntrDetectionSensorMsgListener ppStopSensor = new IntrDetectionSensorMsgListener  (ppEventListener);
-    ProximitySensorMsgListener ppRearLeftSensor = new ProximitySensorMsgListener (ppEventListener, 10);;
-    ProximitySensorMsgListener ppRearRightSensor = new ProximitySensorMsgListener (ppEventListener, 10);;
-    ProximitySensorMsgListener ppFrontLeftSensor = new ProximitySensorMsgListener (ppEventListener, 10);;
-    ProximitySensorMsgListener ppFrontRightSensor = new ProximitySensorMsgListener (ppEventListener, 10);
-    IntrDetectionSensorMsgListener ppSideSensor = new IntrDetectionSensorMsgListener  (ppEventListener);;
+    ProximitySensorMsgListener ppRearLeftSensor = new ProximitySensorMsgListener (ppEventListener, PROXIMITY_THRESHOLD);;
+    ProximitySensorMsgListener ppRearRightSensor = new ProximitySensorMsgListener (ppEventListener, PROXIMITY_THRESHOLD);;
+    ProximitySensorMsgListener ppFrontLeftSensor = new ProximitySensorMsgListener (ppEventListener, PROXIMITY_THRESHOLD);;
+    ProximitySensorMsgListener ppFrontRightSensor = new ProximitySensorMsgListener (ppEventListener, PROXIMITY_THRESHOLD);
+    IntrDetectionSensorMsgListener ppSideSensor = new IntrDetectionSensorMsgListener  (ppEventListener);
+    
 
        
     ParallelParkingTestStateChangeListener ppTestStChngListener;
@@ -42,11 +46,14 @@ public class AutoCarTestAlgoPlane {
         sensorMsgDispatcher.registerListener ("P.RL", ppRearLeftSensor);
         sensorMsgDispatcher.registerListener ("P.SD", ppSideSensor);
         
+        ppSideSensor.detectionThreshold = INTR_DETECTION_SIDE_THRESHOLD;
+        ppStopSensor.detectionThreshold = INTR_DETECTION_ENTRY_THRESHOLD;
         
     }
     public void handleSensorMsg (String msg)
     {
         logger.info (msg);
+        msg = msg.replace ("\n","");
         sensorMsgDispatcher.handleMsg (msg);
     }
     public void reset (){
