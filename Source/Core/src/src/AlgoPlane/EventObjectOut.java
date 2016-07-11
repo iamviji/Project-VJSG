@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AutoCarTestCore;
+package AlgoPlane;
 /**
  *
  * @author vikumar
  */
-public class EventObjectEntered extends EventProximitySensor {
+public class EventObjectOut extends EventIntrDetectionSensor {
     
 }
+ 

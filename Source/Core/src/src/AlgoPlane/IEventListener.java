@@ -3,11 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AutoCarTestCore;
+package AlgoPlane;
+
+import AlgoPlane.Event;
+
 /**
  *
  * @author vikumar
  */
-public class EventObjectIn extends EventIntrDetectionSensor {
-    
+public interface IEventListener {
+    public void handleEvent (IEventDispatcher src, Event event);
 }

@@ -3,11 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AutoCarTestCore;
+package AlgoPlane;
+
+import AlgoPlane.Timer;
+
 /**
  *
  * @author vikumar
  */
-public class EventObjectNoMove {
-    
+public interface ITimeOutEventListener {
+    public void handleTimeoutEvent (Timer timer);
 }

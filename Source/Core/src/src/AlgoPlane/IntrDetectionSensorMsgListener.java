@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AutoCarTestCore;
+package AlgoPlane;
 
+import AlgoPlane.EventObjectIn;
+import AlgoPlane.EventObjectOut;
+import Common.DataBase;
 import java.util.logging.Logger;
 
 /**
@@ -12,25 +15,28 @@ import java.util.logging.Logger;
  * @author vikumar
  */
 public class IntrDetectionSensorMsgListener extends SensorMsgListener {
-    private static Logger logger = Logger.getLogger ("AutoCarTestLogger");
+    private static Logger logger = DataBase.logger;
     enum State 
     {
         STATE_IDLE,
         STATE_SENSED,
     };
-    static final int MAX_DISTANCE = 500;
-    public int detectionThreshold = 500;
+
     State state;
-    public IntrDetectionSensorMsgListener (IEventListener eventListener)
+    public IntrDetectionSensorMsgListener (IEventListener eventListener, String name)
     {
-        super (eventListener);
-        moveToIdleState ();
+        super (eventListener, name);
+        this.reset ();
+    }
+    protected void reset ()
+    {
+            this.moveToIdleState ();
     }
     public int getCurDistance ()
     {
         return -1;
     }
-    public void handleMsg (String msg)
+    public void handleSensorMsg (String msg)
     {
         String str [] = msg.split (":");
                     
@@ -39,7 +45,7 @@ public class IntrDetectionSensorMsgListener extends SensorMsgListener {
         if (state.equals (State.STATE_IDLE))
         {
             logger.info ("Curent state is IDLE");
-            if (curDistance < detectionThreshold)
+            if (curDistance < DataBase.INTR_DETECTION_SIDE_THRESHOLD)
             {
                 moveToSensedState (); 
                 this.eventListener.handleEvent(this, new EventObjectIn ());
@@ -50,7 +56,7 @@ public class IntrDetectionSensorMsgListener extends SensorMsgListener {
         } else if (state.equals(State.STATE_SENSED))
         {
             logger.info ("Curent state is SENSED");
-            if (curDistance >= detectionThreshold)
+            if (curDistance >= DataBase.INTR_DETECTION_SIDE_THRESHOLD)
             {
                 moveToIdleState (); 
                 this.eventListener.handleEvent(this, new EventObjectOut ());

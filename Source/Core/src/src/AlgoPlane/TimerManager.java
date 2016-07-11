@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AutoCarTestCore;
+package AlgoPlane;
 
+import AlgoPlane.Timer;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -32,11 +33,11 @@ public class TimerManager {
         {
             
             Timer timer = it.next (); 
-            logger.info ("While Tick handling"+timer);
+            logger.info ("While Tick handling:"+timer.name);
             timer.giveTick(); 
             if (timer.timeoutValue == 0)
             {
-                logger.info ("removing timer"+timer);
+                logger.info ("removing timer:"+timer.name);
                 it.remove ();
             }
         }

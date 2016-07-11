@@ -5,7 +5,7 @@
  */
 package autocartestcoretest;
 
-import AutoCarTestCore.*;
+import AlgoPlane.*;
 
 /**
  *

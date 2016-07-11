@@ -3,8 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AutoCarTestCore;
+package AlgoPlane;
 
+import AlgoPlane.EventObjectTouched;
+import AlgoPlane.EventObjectEntered;
+import AlgoPlane.EventObjectIn;
+import AlgoPlane.EventObjectMoved;
+import Common.DataBase;
 import java.util.logging.Logger;
 
 /**
@@ -12,7 +17,7 @@ import java.util.logging.Logger;
  * @author vikumar
  */
 public class ParallelParkingEventListener implements IEventListener, ITimeOutEventListener {
-    private static Logger logger = Logger.getLogger ("AutoCarTestLogger");
+    private static Logger logger = DataBase.logger;
     Timer timer;
     Timer idleTimer;
     IEventDispatcher stopSensor;
@@ -33,16 +38,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
     };
     
     State state;
-    static final int PARK_AREA_LENGTH = 7000;
-    static final int PARKING_ENTRY_TIMEOUT = 10000;
-    static final int NO_OF_PARKING_ENTRY_WARNING = 3;
-    static final int PARKING_TIMEOUT = 10000;
-    static final int NO_OF_PARKING_WARNING = 5;
-    static final int PARKING_IDLE_TIMEOUT = 10000;
-    static final int PARKING_EXIT_TIMEOUT = 10000;
-    static final int NO_OF_PARKING_EXIT_WARNING = 3;
-    static final int VERIFY_ANGLE = 500;
-    static final int VEHICLE_MIN_LENGTH=3000;
+
     int timerCount;
     public void setAllSensor (IEventDispatcher stopSensor,
             IEventDispatcher rearLeftSensor,
@@ -51,8 +47,8 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
             IEventDispatcher frontRightSensor,
             IEventDispatcher sideSensor)
     {
-        this.timer = new Timer (this);
-        this.idleTimer = new Timer (this);
+        this.timer = new Timer (this, "P.StateMachine.Timer");
+        this.idleTimer = new Timer (this, "P.StateMachine.IdleTimer");
         this.stopSensor         = stopSensor;
         this.rearLeftSensor     = rearLeftSensor;
         this.rearRightSnesor    = rearRightSensor;
@@ -102,7 +98,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
                     (event instanceof EventObjectMoved || event instanceof EventObjectEntered ))
             {
                 print ("Movement inside Parking Area"); 
-                this.idleTimer.start (PARKING_IDLE_TIMEOUT);
+                this.idleTimer.start (DataBase.PP_PARKING_IDLE_TIMEOUT);
             } else if ((src == this.sideSensor && event instanceof EventObjectIn)
                     ||
                     (event instanceof EventObjectTouched)
@@ -145,10 +141,10 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
         {
             if (timer == this.timer)
             {
-                if (this.timerCount < NO_OF_PARKING_ENTRY_WARNING)
+                if (this.timerCount < DataBase.PP_NO_OF_PARKING_ENTRY_WARNING)
                 {
                     print ("Warning : Park as early as possible");
-                    this.timer.start (PARKING_ENTRY_TIMEOUT);
+                    this.timer.start (DataBase.PP_PARKING_ENTRY_TIMEOUT);
                     this.timerCount++;
                 } else
                 {
@@ -175,9 +171,9 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
                 
                 int frAngle = Math.abs(frGap-flGap);
                 int rrAngle = Math.abs(rrGap-rlGap);
-                int vehicleLength = PARK_AREA_LENGTH - frGap - rrGap; 
+                int vehicleLength = DataBase.PP_PARK_AREA_LENGTH - frGap - rrGap; 
                 
-                if (rrAngle < VERIFY_ANGLE && vehicleLength > VEHICLE_MIN_LENGTH)
+                if (rrAngle < DataBase.PP_VERIFY_ANGLE && vehicleLength > DataBase.PP_VEHICLE_MIN_LENGTH)
                 {
                     moveToStateParked ();
                     print ("Parking Complete. Move to next test angle="+rrAngle+" vehicle length="+vehicleLength);
@@ -189,10 +185,10 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
             } else if (timer == this.timer)
             {
                 logger.info ("parking timer");
-                if (this.timerCount < NO_OF_PARKING_WARNING)
+                if (this.timerCount < DataBase.PP_NO_OF_PARKING_WARNING)
                 {
                     print ("Warning : Park as early as possible");
-                    this.timer.start (PARKING_TIMEOUT);
+                    this.timer.start (DataBase.PP_PARKING_TIMEOUT);
                     this.timerCount++;
                 } else
                 {
@@ -202,10 +198,10 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
             }
         } else if (this.state.equals (State.STATE_PARKED))
         {
-            if (this.timerCount < NO_OF_PARKING_EXIT_WARNING)
+            if (this.timerCount < DataBase.PP_NO_OF_PARKING_EXIT_WARNING)
             {
                 print ("Warning : Exit as early as possible");
-                this.timer.start (PARKING_EXIT_TIMEOUT);
+                this.timer.start (DataBase.PP_PARKING_EXIT_TIMEOUT);
                 this.timerCount++;
             } else
             {
@@ -222,7 +218,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
     {
         this.state = State.STATE_AT_GATE;
         logger.info ("State is changed to AT GATE");
-        this.timer.start(PARKING_ENTRY_TIMEOUT);
+        this.timer.start(DataBase.PP_PARKING_ENTRY_TIMEOUT);
         this.timerCount = 0;
     }
     private void  moveToStateParking ()
@@ -230,14 +226,14 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
         this.state = State.STATE_PARKING;
         logger.info ("State is changed to PARKING");
         this.timerCount = 0;
-        this.timer.start (PARKING_TIMEOUT);
-        this.idleTimer.start(PARKING_IDLE_TIMEOUT);
+        this.timer.start (DataBase.PP_PARKING_TIMEOUT);
+        this.idleTimer.start(DataBase.PP_PARKING_IDLE_TIMEOUT);
     }
     private void moveToStateParked ()
     {
         this.state = State.STATE_PARKED;
         logger.info ("State is changed to PARKED");
-        this.timer.start(PARKING_EXIT_TIMEOUT);
+        this.timer.start(DataBase.PP_PARKING_EXIT_TIMEOUT);
         this.timerCount = 0;
     }
     private void moveToStateFailed ()

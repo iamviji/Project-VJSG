@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AutoCarTestCore;
+package AlgoPlane;
+import Common.DataBase;
 import java.util.logging.Logger;
 /**
  *
  * @author vikumar
  */
 public  abstract class ParallelParkingTestStateChangeListener  {
-   private static Logger logger = Logger.getLogger ("AutoCarTestLogger");
+   private static Logger logger = DataBase.logger;
    public void handleEventAtStopSensor ()
    {
        logger.info ("Default Event Handler");

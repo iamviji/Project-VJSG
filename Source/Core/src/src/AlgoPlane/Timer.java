@@ -3,30 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AutoCarTestCore;
+package AlgoPlane;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
+import Common.DataBase;
 /**
  *
  * @author vikumar
  */
 public class Timer {
-    private static Logger logger = Logger.getLogger ("AutoCarTestLogger");
+    private static Logger logger = DataBase.logger;
     public int timeoutValue;
     public int lock;
     private ITimeOutEventListener eventListener;
-    public Timer (ITimeOutEventListener eventListener)
+    public String name;
+    public Timer (ITimeOutEventListener eventListener, String name)
     {
         this.eventListener = eventListener;
+        this.name = name;
         this.timeoutValue = 0;
         this.lock = 0;
     }
     public void start (int timeoutValue)
     {
-        logger.info ("Starting timer"+this);
-        this.timeoutValue = timeoutValue / TimerManager.resolution; 
+        logger.info ("Starting timer:"+this.name);
+        this.timeoutValue = timeoutValue / DataBase.TIMER_RESOLUTION; 
         Iterator <Timer> it = TimerManager.timerList.iterator();
         while (it.hasNext())
         {
@@ -40,11 +43,11 @@ public class Timer {
     }
     public void stop ()
     {
-        logger.info ("Stoping timer"+this);
+        logger.info ("Stoping timer:"+this.name);
         this.timeoutValue = 0;
         if (TimerManager.lock == 0)
         {
-            logger.info ("Removing timer"+this);
+            logger.info ("Removing timer:"+this.name);
             TimerManager.timerList.remove(this);            
         }
     }

@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+package AlgoPlane;
 /**
  *
  * @author vikumar
  */
-public class EventNoEvent {
-    
+public interface ISensorMsgDispatcher {
+    public void registerListener(String sensorId, ISensorMsgListener eventListener);
+    public void handleMsg (String msg);   
 }

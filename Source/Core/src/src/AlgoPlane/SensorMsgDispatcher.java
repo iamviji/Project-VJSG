@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AutoCarTestCore;
+package AlgoPlane;
 /**
  *
  * @author vikumar
  */
+import Common.DataBase;
 import java.util.*;
 import java.util.logging.Logger;
 public class SensorMsgDispatcher implements ISensorMsgDispatcher {
-    private static Logger logger = Logger.getLogger ("AutoCarTestLogger");
+    private static Logger logger = DataBase.logger;
     HashMap<String, ISensorMsgListener> mapOfMsgListener;
     public SensorMsgDispatcher ()
     {

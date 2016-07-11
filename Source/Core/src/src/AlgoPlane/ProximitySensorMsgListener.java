@@ -3,57 +3,62 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AutoCarTestCore;
+package AlgoPlane;
 
+import AlgoPlane.EventObjectTouched;
+import AlgoPlane.EventObjectEntered;
+import AlgoPlane.EventObjectMoved;
+import AlgoPlane.EventObjectExited;
 import java.util.logging.Logger;
 import java.lang.Math.*;
+
+import Common.DataBase;
 /**
  *
  * @author vikumar
  */
 public class ProximitySensorMsgListener extends SensorMsgListener {
-    private static Logger logger = Logger.getLogger ("AutoCarTestLogger");
-    int threshold;
+    private static Logger logger = DataBase.logger;
     enum State 
     {
         STATE_IDLE,
         STATE_SENSING,
         STATE_TOUCHED,
     };
-    static final int MAX_DISTANCE = 500;
-    static final int MIN_DISTANCE = 10;
-    //static final int NO_MOVEMENT_TIMEOUT_VALUE = 200;
-    // static final int SENSOR_MSG_FREQ = 50;
+
+
     State state;
     int prevDistance;
     int curDistance;
-    public ProximitySensorMsgListener (IEventListener eventListener, int threshold)
+    public ProximitySensorMsgListener (IEventListener eventListener, String name)
     {
-        super (eventListener);
-        this.threshold = threshold;
-        //this.sensorMsgFreq = SENSOR_MSG_FREQ;
-        moveToIdleState ();
-        this.prevDistance = MAX_DISTANCE;
+        super (eventListener, name);
+        this.reset();
+    }
+    protected void reset ()
+    {
+            this.moveToIdleState ();
     }
     public int getCurDistance ()
     {
         return this.curDistance;
     }
-    public void handleMsg (String msg)
+    public void handleSensorMsg (String msg)
     {
         logger.info ("Entry");
         String str [] = msg.split (":");
         
         this.curDistance = Integer.parseInt (str [2]);
+        logger.info ("update cur distance="+this.curDistance);
         if (state.equals(State.STATE_IDLE))
         {
             logger.info ("Current State is IDLE");
-            if (curDistance < MAX_DISTANCE && curDistance >= MIN_DISTANCE)
+            if (curDistance < DataBase.PP_PROXIMITY_SENSE_THRESHOLD && curDistance >= DataBase.PP_PROXIMITY_TOUCH_THRESHOLD)
             {
                 moveToSensingState ();
                 logger.info ("Generating EventObjectEntered");
                 this.eventListener.handleEvent(this, new EventObjectEntered ());
-            } else if (curDistance < MIN_DISTANCE)
+            } else if (curDistance < DataBase.PP_PROXIMITY_TOUCH_THRESHOLD)
             {
                 moveToTouchedState ();
                 logger.info ("Generating EventObjectTouched");
@@ -65,13 +70,12 @@ public class ProximitySensorMsgListener extends SensorMsgListener {
         } else if (state.equals(State.STATE_SENSING))
         {
             logger.info ("Current State is SENSING");
-            if (curDistance >= MAX_DISTANCE)
+            if (curDistance >= DataBase.PP_PROXIMITY_SENSE_THRESHOLD)
             {
                 moveToIdleState ();
                 logger.info ("Generating EventObjectExited");
                 this.eventListener.handleEvent(this, new EventObjectExited ());
-                // Send EventObjectExited                
-            } else if (curDistance < MIN_DISTANCE) 
+            } else if (curDistance < DataBase.PP_PROXIMITY_TOUCH_THRESHOLD) 
             {
                 moveToTouchedState ();
                 // Send EventObjectTouched
@@ -81,25 +85,25 @@ public class ProximitySensorMsgListener extends SensorMsgListener {
             {
                 int diff = this.prevDistance - this.curDistance;
                 diff = Math.abs (diff);
-                if (diff >= this.threshold)
+                if (diff >= DataBase.PP_PROXIMITY_MOVE_THRESHOLD)
                 {
                     this.prevDistance = this.curDistance;
                     logger.info ("Generating EventObjectMoved");
                     this.eventListener.handleEvent(this, new EventObjectMoved ());
                 } else
                 {
-                    logger.info ("No Movement is observed. Threshold="+this.threshold + " prevDistance="+this.prevDistance+" curDistance="+this.curDistance);
+                    logger.info ("No Movement is observed. Threshold="+DataBase.PP_PROXIMITY_MOVE_THRESHOLD + " prevDistance="+this.prevDistance+" curDistance="+this.curDistance);
                 }
             }
         } else if (state.equals(State.STATE_TOUCHED))
         {
             logger.info ("Current State is TOUCHED");
-            if (curDistance >= MAX_DISTANCE)
+            if (curDistance >= DataBase.PP_PROXIMITY_SENSE_THRESHOLD)
             {
                 logger.info ("State is changed to IDLE");
                 moveToIdleState ();
                 this.eventListener.handleEvent(this, new EventObjectExited ());
-            } else if (curDistance >= MIN_DISTANCE)
+            } else if (curDistance >= DataBase.PP_PROXIMITY_TOUCH_THRESHOLD)
             {
                 logger.info ("Movement is observed");
                 logger.info ("Generating EventObjectMoved");
@@ -125,7 +129,6 @@ public class ProximitySensorMsgListener extends SensorMsgListener {
     {
         logger.info ("State is changed to TOUCHED");
         this.state = State.STATE_TOUCHED;
-    }
-    
+    }   
     
 }

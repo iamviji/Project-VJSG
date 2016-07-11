@@ -3,11 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AutoCarTestCore;
+package ControlPlane;
+
+import AlgoPlane.*;
+
 /**
  *
  * @author vikumar
  */
-public interface ISensorMsgListener {
-   public void handleMsg (String msg); 
+public class AutoCarTestCtrlPlane extends ParallelParkingTestStateChangeListener {
+    
 }
