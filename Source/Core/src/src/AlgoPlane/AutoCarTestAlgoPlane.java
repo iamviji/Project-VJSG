@@ -57,5 +57,6 @@ public class AutoCarTestAlgoPlane {
     public void registerParallelParkingStateChangeListener (ParallelParkingTestStateChangeListener ppTestStChngListener)
     {
         this.ppTestStChngListener = ppTestStChngListener;
+        this.ppEventListener.registerParallelParkingTestStateChangeListener(ppTestStChngListener);
     }
 }

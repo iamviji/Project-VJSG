@@ -38,7 +38,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
     };
     
     State state;
-
+    ParallelParkingTestStateChangeListener stateChngListener;
     int timerCount;
     public void setAllSensor (IEventDispatcher stopSensor,
             IEventDispatcher rearLeftSensor,
@@ -57,6 +57,10 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
         this.sideSensor         = sideSensor;              
         this.state = State.STATE_IDLE;     
         this.timerCount = 0;
+    }
+    public void registerParallelParkingTestStateChangeListener (ParallelParkingTestStateChangeListener listener)
+    {
+        this.stateChngListener = listener;
     }
     public void handleEvent (IEventDispatcher src, Event event)
     {
