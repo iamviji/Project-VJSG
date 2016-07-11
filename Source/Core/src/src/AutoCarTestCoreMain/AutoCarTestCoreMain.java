@@ -33,10 +33,12 @@ public class AutoCarTestCoreMain implements IAutoCarTestCoreService{
     private DatagramPacket sendPacket;
     private int port;
     
-    public AutoCarTestCoreMain (int port)
+    public AutoCarTestCoreMain (int port, ParallelParkingTestStateChangeListener cb)
     {
         this.algoPlane = new AutoCarTestAlgoPlane ();
         this.ctrlPlane = new AutoCarTestCtrlPlane ();
+        //this.algoPlane.registerParallelParkingStateChangeListener (this.ctrlPlane); For demo not required
+        this.algoPlane.registerParallelParkingStateChangeListener(cb); // for demo let application listen it directly
         this.port = port;
         logger.setUseParentHandlers(false);
         Handler[] handlers = logger.getHandlers();

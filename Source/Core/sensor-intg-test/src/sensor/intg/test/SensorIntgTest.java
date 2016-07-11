@@ -32,7 +32,7 @@ private static Logger logger = DataBase.logger;
     public static void main(String[] args) {
         
         int port = 7000;
-        AutoCarTestCoreMain core = new AutoCarTestCoreMain (port);
+         AutoCarTestCoreMain core = new AutoCarTestCoreMain (port, new DummyAppl ());
         TimerTickSender ttSender = new TimerTickSender (core);
         
         java.util.Timer timer = new java.util.Timer ();
