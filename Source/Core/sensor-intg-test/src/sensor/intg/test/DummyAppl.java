@@ -9,9 +9,25 @@ import AlgoPlane.*;
  *
  * @author vikumar
  */
-public class DummyAppl extends ParallelParkingTestStateChangeListener {
-  public void handleEventAtStopSensor ()
-   {
-       System.out.println ("Apl:handleEventAtStopSensor");
-   }  
+public class DummyAppl implements IParallelParkingTestStateChangeListener, ISensorStateChangeListener {
+    public void handleEventStateChange (ParallelParkingState curState, ParallelParkingState prevState)
+    {
+        System.out.println ("Apl:handleStateChange curState="+curState + " prevState="+prevState);
+    }  
+    public void handleWarning (ParallelParkingState state, ParallelParkingWarning warn)
+    {
+        System.out.println ("Apl:handleWarning state="+state+" warn="+warn);
+    }
+        public void handlePassInd()
+    {
+        System.out.println ("Apl:handlePassInd");
+    }
+    public void handleFailInd(ParallelParkingState state, FailReason reason)
+    {
+        System.out.println ("Apl:handleFailInd state="+state+" reason="+reason);
+    }
+    public void handleSensorStateChangeInd (String str, boolean isActive)
+    {
+        System.out.println ("Apl:handleSensorStateChangeInd sensor="+str+" isActive="+isActive);
+    }
 }

@@ -23,7 +23,7 @@ public class AutoCarTestAlgoPlane {
     IntrDetectionSensorMsgListener ppSideSensor = new IntrDetectionSensorMsgListener  (ppEventListener, "P.SD");;
 
        
-    ParallelParkingTestStateChangeListener ppTestStChngListener;
+    IParallelParkingTestStateChangeListener ppTestStChngListener;
     ISensorMsgDispatcher sensorMsgDispatcher;
     public AutoCarTestAlgoPlane ()
     {
@@ -54,9 +54,19 @@ public class AutoCarTestAlgoPlane {
     public void reset (){
     }
     
-    public void registerParallelParkingStateChangeListener (ParallelParkingTestStateChangeListener ppTestStChngListener)
+    public void registerParallelParkingStateChangeListener (IParallelParkingTestStateChangeListener ppTestStChngListener)
     {
         this.ppTestStChngListener = ppTestStChngListener;
         this.ppEventListener.registerParallelParkingTestStateChangeListener(ppTestStChngListener);
     }
+    public void registerSensorStateChangeListener (ISensorStateChangeListener stChgListener)
+    {
+        this.ppStopSensor.registerSensorStateChangeListener(stChgListener);
+        this.ppFrontLeftSensor.registerSensorStateChangeListener(stChgListener);
+        this.ppFrontRightSensor.registerSensorStateChangeListener(stChgListener);
+        this.ppRearLeftSensor.registerSensorStateChangeListener(stChgListener);
+        this.ppRearRightSensor.registerSensorStateChangeListener(stChgListener);
+        this.ppSideSensor.registerSensorStateChangeListener(stChgListener);
+    }
+    
 }

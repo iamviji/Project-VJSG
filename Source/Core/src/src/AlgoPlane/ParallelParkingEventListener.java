@@ -27,18 +27,9 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
     IEventDispatcher frontRightSensor;
     IEventDispatcher sideSensor;
     
-    enum State
-    {
-        STATE_IDLE,
-        STATE_AT_GATE,
-        STATE_PARKING,
-        STATE_PARKED,
-        STATE_PASSED,
-        STATE_FAILED,
-    };
-    
-    State state;
-    ParallelParkingTestStateChangeListener stateChngListener;
+        
+    ParallelParkingState state;
+    IParallelParkingTestStateChangeListener stateChngListener;
     int timerCount;
     public void setAllSensor (IEventDispatcher stopSensor,
             IEventDispatcher rearLeftSensor,
@@ -55,29 +46,29 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
         this.frontLeftSensor    = frontLeftSensor;
         this.frontRightSensor   = frontRightSensor;
         this.sideSensor         = sideSensor;              
-        this.state = State.STATE_IDLE;     
+        this.state = ParallelParkingState.STATE_IDLE;     
         this.timerCount = 0;
     }
-    public void registerParallelParkingTestStateChangeListener (ParallelParkingTestStateChangeListener listener)
+    public void registerParallelParkingTestStateChangeListener (IParallelParkingTestStateChangeListener listener)
     {
         this.stateChngListener = listener;
     }
     public void handleEvent (IEventDispatcher src, Event event)
     {
         logger.info ("Entry , Src = " + src + " Event = "+event + " State="+this.state);
-        if (state.equals (State.STATE_IDLE))
+        if (state.equals (ParallelParkingState.STATE_IDLE))
         {
             logger.info ("Current State is IDLE");
             if (event instanceof EventObjectIn && src == this.stopSensor)
             {
                 print ("Vehicle arrived at Parallel Parking Stop Gate");
-                moveToStateAtGate (); 
-                stateChngListener.handleEventAtStopSensor();
+                moveToStateAtGate ();                 
             } else
             {
                 logger.warning ("Event is not handled");
+                stateChngListener.handleWarning (ParallelParkingState.STATE_IDLE,ParallelParkingWarning.PP_WARN_UNHANDLED);
             }
-        } else if (this.state.equals(State.STATE_AT_GATE))
+        } else if (this.state.equals(ParallelParkingState.STATE_AT_GATE))
         {
             logger.info ("Current State is STATE_AT_GATE");
             if (event instanceof EventObjectEntered)
@@ -90,12 +81,15 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
                     )
             {
                 moveToStateFailed ();
+                stateChngListener.handleFailInd (ParallelParkingState.STATE_AT_GATE, FailReason.FAIL_REASON_TOUCH);
                 print ("Object Touched so failed");
             } else
             {
                 logger.warning ("Event is not handled");
+                stateChngListener.handleWarning (ParallelParkingState.STATE_AT_GATE,ParallelParkingWarning.PP_WARN_UNHANDLED);
+
             }
-        } else if (this.state.equals(State.STATE_PARKING))
+        } else if (this.state.equals(ParallelParkingState.STATE_PARKING))
         {
             logger.info ("Current State is STATE_PARKING");
             if ((src == this.frontRightSensor || src == this.frontLeftSensor || src == this.rearLeftSensor ||
@@ -104,6 +98,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
             {
                 print ("Movement inside Parking Area"); 
                 this.idleTimer.start (DataBase.PP_PARKING_IDLE_TIMEOUT);
+                stateChngListener.handleWarning (ParallelParkingState.STATE_AT_GATE,ParallelParkingWarning.PP_WARN_MOVEMENT_INSIDE);
             } else if ((src == this.sideSensor && event instanceof EventObjectIn)
                     ||
                     (event instanceof EventObjectTouched)
@@ -111,11 +106,12 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
             {
                     moveToStateFailed ();
                     print ("Object Touched so failed");
+                    stateChngListener.handleFailInd (ParallelParkingState.STATE_PARKING, FailReason.FAIL_REASON_TOUCH);
             } else
             {
-                logger.warning ("Event is not handled");
+                stateChngListener.handleWarning (ParallelParkingState.STATE_PARKING,ParallelParkingWarning.PP_WARN_UNHANDLED);
             }
-        } else if (this.state.equals(State.STATE_PARKED))
+        } else if (this.state.equals(ParallelParkingState.STATE_PARKED))
         {
             logger.info ("Current State is STATE_PARKED");
             if ( (src == this.sideSensor && event instanceof EventObjectIn)
@@ -125,12 +121,13 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
             {
                     moveToStateFailed ();
                     print ("Object Touched so failed");
+                    stateChngListener.handleFailInd (ParallelParkingState.STATE_PARKED, FailReason.FAIL_REASON_TOUCH);
             } else if (src == this.stopSensor && event instanceof EventObjectIn)
             {
                 moveToStatePassed ();                
             } else
             {
-                logger.info ("Unhandled");
+                stateChngListener.handleWarning (ParallelParkingState.STATE_PARKED,ParallelParkingWarning.PP_WARN_UNHANDLED);
             }
         } else
         {
@@ -142,7 +139,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
     {
         logger.info ("Currest state =" + this.state.name());
         logger.info ("TimetOut Event");
-        if (this.state.equals (State.STATE_AT_GATE))
+        if (this.state.equals (ParallelParkingState.STATE_AT_GATE))
         {
             if (timer == this.timer)
             {
@@ -151,16 +148,18 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
                     print ("Warning : Park as early as possible");
                     this.timer.start (DataBase.PP_PARKING_ENTRY_TIMEOUT);
                     this.timerCount++;
+                    stateChngListener.handleWarning (ParallelParkingState.STATE_AT_GATE,ParallelParkingWarning.PP_WARN_ENTRY);
                 } else
                 {
                     moveToStateFailed ();
-                    System.out.println ("Testing Failed due to Parking entry timeout\n");
+                    System.out.println ("Testing Failed due to Parking entry timeout");
+                    stateChngListener.handleFailInd (ParallelParkingState.STATE_AT_GATE, FailReason.FAIL_REASON_TIMEOUT);
                 }
             } else
             {
-                logger.warning ("Unhandled");
+                stateChngListener.handleWarning (ParallelParkingState.STATE_AT_GATE,ParallelParkingWarning.PP_WARN_UNHANDLED);
             }
-        } else if (this.state.equals (State.STATE_PARKING))
+        } else if (this.state.equals (ParallelParkingState.STATE_PARKING))
         {
             if (timer == this.idleTimer)
             {
@@ -186,6 +185,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
                 {
                     moveToStateFailed ();
                     print ("Parking is not accurate failed");
+                    stateChngListener.handleFailInd (ParallelParkingState.STATE_PARKING, FailReason.FAIL_REASON_WRONG_ALIGNEMENT);
                 }
             } else if (timer == this.timer)
             {
@@ -195,23 +195,27 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
                     print ("Warning : Park as early as possible");
                     this.timer.start (DataBase.PP_PARKING_TIMEOUT);
                     this.timerCount++;
+                    stateChngListener.handleWarning (ParallelParkingState.STATE_PARKING,ParallelParkingWarning.PP_WARN_PARK);
                 } else
                 {
                     moveToStateFailed ();
                     print ("Testing Failed due to parking timeout\n");
+                    stateChngListener.handleFailInd (ParallelParkingState.STATE_PARKING, FailReason.FAIL_REASON_TIMEOUT);
                 }
             }
-        } else if (this.state.equals (State.STATE_PARKED))
+        } else if (this.state.equals (ParallelParkingState.STATE_PARKED))
         {
             if (this.timerCount < DataBase.PP_NO_OF_PARKING_EXIT_WARNING)
             {
                 print ("Warning : Exit as early as possible");
                 this.timer.start (DataBase.PP_PARKING_EXIT_TIMEOUT);
                 this.timerCount++;
+                stateChngListener.handleWarning (ParallelParkingState.STATE_PARKED,ParallelParkingWarning.PP_WARN_EXIT);
             } else
             {
                 moveToStateFailed ();
-                System.out.println ("Testing Failed due to Parking exit timeout\n");
+                System.out.println ("Testing Failed due to Parking exit timeout");
+                stateChngListener.handleFailInd (ParallelParkingState.STATE_PARKED, FailReason.FAIL_REASON_TIMEOUT);
             } 
         } else
         {
@@ -221,29 +225,36 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
     
     private void  moveToStateAtGate ()
     {
-        this.state = State.STATE_AT_GATE;
+        ParallelParkingState prevState = state;
+        this.state = ParallelParkingState.STATE_AT_GATE;
         logger.info ("State is changed to AT GATE");
         this.timer.start(DataBase.PP_PARKING_ENTRY_TIMEOUT);
         this.timerCount = 0;
+        stateChngListener.handleEventStateChange(this.state, prevState);
     }
     private void  moveToStateParking ()
     {
-        this.state = State.STATE_PARKING;
+        ParallelParkingState prevState = state;
+        this.state = ParallelParkingState.STATE_PARKING;
         logger.info ("State is changed to PARKING");
         this.timerCount = 0;
         this.timer.start (DataBase.PP_PARKING_TIMEOUT);
         this.idleTimer.start(DataBase.PP_PARKING_IDLE_TIMEOUT);
+        stateChngListener.handleEventStateChange(this.state, prevState);
     }
     private void moveToStateParked ()
     {
-        this.state = State.STATE_PARKED;
+        ParallelParkingState prevState = state;
+        this.state = ParallelParkingState.STATE_PARKED;
         logger.info ("State is changed to PARKED");
         this.timer.start(DataBase.PP_PARKING_EXIT_TIMEOUT);
         this.timerCount = 0;
+        stateChngListener.handleEventStateChange(this.state, prevState);
     }
     private void moveToStateFailed ()
     {
-        this.state = State.STATE_FAILED;
+        ParallelParkingState prevState = state;
+        this.state = ParallelParkingState.STATE_FAILED;
         logger.info ("State is changed to FAILED");
         this.timer.stop();
         this.idleTimer.stop ();
@@ -251,11 +262,13 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
     }
    private void moveToStatePassed ()
     {
-        this.state = State.STATE_PASSED;
+        ParallelParkingState prevState = state;
+        this.state = ParallelParkingState.STATE_PASSED;
         logger.info ("State is changed to PASSED");
         this.timer.stop();
         this.idleTimer.stop ();
         print ("Parallel Parking is finished : PASS");
+        stateChngListener.handlePassInd();
     } 
     private void print (String str)
     {
