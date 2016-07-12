@@ -21,6 +21,7 @@ private static final int IDLE_TIMER = 10000;
 //protected int internalTimerTick;
 //protected int sensorMsgFreq;
 protected IEventListener eventListener;
+private ISensorStateChangeListener stChgListener;
 enum State
 {
      SENSOR_STATE_IDLE,
@@ -48,20 +49,25 @@ public void handleMsg (String msg)
         this.timer.start(IDLE_TIMER);
         this.state = State.SENSOR_STATE_ACTIVE;
         
-        eventListener.handleEvent(this, new EventSensorActiveInd ());
+        stChgListener.handleSensorStateChangeInd (this.name, true);
+        //eventListener.handleEvent(this, new EventSensorActiveInd ());
+        
     } else if (state.equals(State.SENSOR_STATE_ACTIVE))
     {
         this.timer.start(IDLE_TIMER);       
     }
     this.handleSensorMsg (msg);
 }
-public void handleTimeoutEvent (Timer timer)
-{
-    this.reset();
-    eventListener.handleEvent(this, new EventSensorDeActiveInd ());
-    
-}
-
+    public void handleTimeoutEvent (Timer timer)
+    {
+        this.reset();
+        stChgListener.handleSensorStateChangeInd (this.name, false);
+        //eventListener.handleEvent(this, new EventSensorDeActiveInd ());
+    }
+    public void registerSensorStateChangeListener (ISensorStateChangeListener stChgListener)
+    {
+        this.stChgListener = stChgListener;
+    }
 }
 
  
