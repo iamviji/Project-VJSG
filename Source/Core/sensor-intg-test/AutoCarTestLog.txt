@@ -103,15 +103,375 @@ INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
 INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
 INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
 INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : DI:P.RR:100
+
+INFO  :  AlgoPlane.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.RR:100
+
+INFO  :  AlgoPlane.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.RR
+INFO  :  AlgoPlane.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.RR
+INFO  :  AlgoPlane.Timer -:- start -:- Starting timer:Sensor.Health.P.RR
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Entry
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- update cur distance=100
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Current State is IDLE
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- moveToSensingState -:- State is changed to SENSING
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Generating EventObjectEntered
+WARNING  :  AlgoPlane.ParallelParkingEventListener -:- handleEvent -:- Event is ignored since not activated
 INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
 INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
 INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
 INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
 INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
 INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
 INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
 INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : DI:P.RL:90
+
+INFO  :  AlgoPlane.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.RL:90
+
+INFO  :  AlgoPlane.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.RL
+INFO  :  AlgoPlane.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.RL
+INFO  :  AlgoPlane.Timer -:- start -:- Starting timer:Sensor.Health.P.RL
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Entry
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- update cur distance=90
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Current State is IDLE
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- moveToSensingState -:- State is changed to SENSING
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Generating EventObjectEntered
+WARNING  :  AlgoPlane.ParallelParkingEventListener -:- handleEvent -:- Event is ignored since not activated
 INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
 INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
 INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
 INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : DI:P.FR:100
+
+INFO  :  AlgoPlane.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.FR:100
+
+INFO  :  AlgoPlane.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.FR
+INFO  :  AlgoPlane.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.FR
+INFO  :  AlgoPlane.Timer -:- start -:- Starting timer:Sensor.Health.P.FR
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Entry
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- update cur distance=100
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Current State is SENSING
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Generating EventObjectMoved
+WARNING  :  AlgoPlane.ParallelParkingEventListener -:- handleEvent -:- Event is ignored since not activated
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : DI:P.FL:100
+
+INFO  :  AlgoPlane.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.FL:100
+
+INFO  :  AlgoPlane.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.FL
+INFO  :  AlgoPlane.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.FL
+INFO  :  AlgoPlane.Timer -:- start -:- Starting timer:Sensor.Health.P.FL
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Entry
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- update cur distance=100
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Current State is SENSING
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- No Movement is observed. Threshold=5 prevDistance=100 curDistance=100
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : DI:P.FR:90
+
+INFO  :  AlgoPlane.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.FR:90
+
+INFO  :  AlgoPlane.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.FR
+INFO  :  AlgoPlane.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.FR
+INFO  :  AlgoPlane.Timer -:- start -:- Starting timer:Sensor.Health.P.FR
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Entry
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- update cur distance=90
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Current State is SENSING
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Generating EventObjectMoved
+WARNING  :  AlgoPlane.ParallelParkingEventListener -:- handleEvent -:- Event is ignored since not activated
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : DI:P.RR:100
+
+INFO  :  AlgoPlane.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.RR:100
+
+INFO  :  AlgoPlane.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.RR
+INFO  :  AlgoPlane.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.RR
+INFO  :  AlgoPlane.Timer -:- start -:- Starting timer:Sensor.Health.P.RR
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Entry
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- update cur distance=100
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Current State is SENSING
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- No Movement is observed. Threshold=5 prevDistance=100 curDistance=100
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : DI:P.RL:90
+
+INFO  :  AlgoPlane.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.RL:90
+
+INFO  :  AlgoPlane.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.RL
+INFO  :  AlgoPlane.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.RL
+INFO  :  AlgoPlane.Timer -:- start -:- Starting timer:Sensor.Health.P.RL
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Entry
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- update cur distance=90
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Current State is SENSING
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- No Movement is observed. Threshold=5 prevDistance=90 curDistance=90
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : DI:P.FR:100
+
+INFO  :  AlgoPlane.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.FR:100
+
+INFO  :  AlgoPlane.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.FR
+INFO  :  AlgoPlane.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.FR
+INFO  :  AlgoPlane.Timer -:- start -:- Starting timer:Sensor.Health.P.FR
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Entry
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- update cur distance=100
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Current State is SENSING
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Generating EventObjectMoved
+WARNING  :  AlgoPlane.ParallelParkingEventListener -:- handleEvent -:- Event is ignored since not activated
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : DI:P.FL:100
+
+INFO  :  AlgoPlane.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.FL:100
+
+INFO  :  AlgoPlane.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.FL
+INFO  :  AlgoPlane.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.FL
+INFO  :  AlgoPlane.Timer -:- start -:- Starting timer:Sensor.Health.P.FL
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Entry
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- update cur distance=100
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Current State is SENSING
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- No Movement is observed. Threshold=5 prevDistance=100 curDistance=100
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : DI:P.FR:90
+
+INFO  :  AlgoPlane.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.FR:90
+
+INFO  :  AlgoPlane.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.FR
+INFO  :  AlgoPlane.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.FR
+INFO  :  AlgoPlane.Timer -:- start -:- Starting timer:Sensor.Health.P.FR
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Entry
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- update cur distance=90
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Current State is SENSING
+INFO  :  AlgoPlane.ProximitySensorMsgListener -:- handleSensorMsg -:- Generating EventObjectMoved
+WARNING  :  AlgoPlane.ParallelParkingEventListener -:- handleEvent -:- Event is ignored since not activated
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : DI:P.GST:90
+
+INFO  :  AlgoPlane.AutoCarTestAlgoPlane -:- handleSensorMsg -:- DI:P.GST:90
+
+INFO  :  AlgoPlane.SensorMsgDispatcher -:- handleMsg -:- Sensor ID : P.GST
+INFO  :  AlgoPlane.SensorMsgDispatcher -:- handleMsg -:- Dispatcher able to find Listener. ID : P.GST
+INFO  :  AlgoPlane.Timer -:- start -:- Starting timer:Sensor.Health.P.GST
+INFO  :  AlgoPlane.IntrDetectionSensorMsgListener -:- handleSensorMsg -:- Curent state is IDLE
+INFO  :  AlgoPlane.IntrDetectionSensorMsgListener -:- moveToSensedState -:- State is changed to SENSED
+WARNING  :  AlgoPlane.ParallelParkingEventListener -:- handleEvent -:- Event is ignored since not activated
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL
+INFO  :  AutoCarTestCoreMain.AutoCarTestCoreMain -:- run -:- Reading Line : TT
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.GST
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.FL
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RR
+INFO  :  AlgoPlane.TimerManager -:- giveTick -:- While Tick handling:Sensor.Health.P.RL

@@ -61,6 +61,7 @@ public void handleMsg (String msg)
     public void handleTimeoutEvent (Timer timer)
     {
         this.reset();
+        this.state = State.SENSOR_STATE_IDLE;
         stChgListener.handleSensorStateChangeInd (this.name, false);
         //eventListener.handleEvent(this, new EventSensorDeActiveInd ());
     }
