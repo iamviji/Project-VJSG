@@ -33,7 +33,7 @@ private static Logger logger = DataBase.logger;
         
         int port = 7000;
         DummyAppl apl = new DummyAppl ();
-         AutoCarTestCoreMain core = new AutoCarTestCoreMain (port, apl, apl);
+         AutoCarTestCoreMain core = new AutoCarTestCoreMain (port, apl, apl, "AutoCarTestLog.txt", "DataLog.Txt");
         TimerTickSender ttSender = new TimerTickSender (core);
         
         java.util.Timer timer = new java.util.Timer ();

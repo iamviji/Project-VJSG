@@ -29,11 +29,13 @@ public class AutoCarTestCoreMain implements IAutoCarTestCoreService{
     private AutoCarTestAlgoPlane algoPlane;
  
     private static Logger logger = DataBase.logger;
+    private static Logger dataLogger = DataBase.testDataLogger;
     private DatagramSocket clientSocket;
     private DatagramPacket sendPacket;
     private int port;
     
-    public AutoCarTestCoreMain (int port, IParallelParkingTestStateChangeListener ppTestChgListener, ISensorStateChangeListener stChgListener )
+    public AutoCarTestCoreMain (int port, IParallelParkingTestStateChangeListener ppTestChgListener, ISensorStateChangeListener stChgListener,
+    String logFilePath, String dataFilePath)
     {
         this.algoPlane = new AutoCarTestAlgoPlane ();
         this.ctrlPlane = new AutoCarTestCtrlPlane ();
@@ -42,16 +44,23 @@ public class AutoCarTestCoreMain implements IAutoCarTestCoreService{
         this.algoPlane.registerSensorStateChangeListener (stChgListener);             // For demon in final system may control plane handle it
         this.port = port;
         logger.setUseParentHandlers(false);
+        dataLogger.setUseParentHandlers(false);
         Handler[] handlers = logger.getHandlers();
         for(Handler handler : handlers)
         {
             logger.removeHandler(handler);
             System.out.println ("removing handler");
         }
+        Handler[] handlers1 = logger.getHandlers();
+        for(Handler handler : handlers1)
+        {
+            dataLogger.removeHandler(handler);
+            System.out.println ("removing handler");
+        }
         try
         {
             // file handler
-            FileHandler fh = new FileHandler("AutoCarTestLog.txt");
+            FileHandler fh = new FileHandler(logFilePath);
             //fh.setFormatter(new MS2Formatter());
             fh.setFormatter(new java.util.logging.Formatter() 
             {
@@ -65,6 +74,18 @@ public class AutoCarTestCoreMain implements IAutoCarTestCoreService{
             }
                      );
             logger.addHandler(fh);
+            // file handler
+            FileHandler fh1 = new FileHandler(dataFilePath);
+            //fh.setFormatter(new MS2Formatter());
+            fh1.setFormatter(new java.util.logging.Formatter() 
+            {
+                public String format(LogRecord record) 
+                {
+                    return record.getMessage();
+                }
+            }
+                     );
+            dataLogger.addHandler(fh1);
         }
         catch (IOException e) 
         { 
@@ -87,7 +108,9 @@ public class AutoCarTestCoreMain implements IAutoCarTestCoreService{
         }
     }
     public void startTest (int vehicleLength, int vehicleWidth)
-    {}
+    {
+    
+    }
     public void stopTest ()
     {}
     public void registerServiceCallBack (IAutoCarTestServiceCallBack callBack)
@@ -119,6 +142,7 @@ public class AutoCarTestCoreMain implements IAutoCarTestCoreService{
                 } else if (str[0].equals("DI"))
                 {
                     //System.out.println("handling msg");
+                    dataLogger.info(sentence);
                     algoPlane.handleSensorMsg(sentence);
                 } else
                 {
@@ -149,6 +173,8 @@ public class AutoCarTestCoreMain implements IAutoCarTestCoreService{
    public void configure (String xmlPath)
    {}
    public void reset ()
-   {}
+   {
+       this.algoPlane.reset();
+   }
 
 }

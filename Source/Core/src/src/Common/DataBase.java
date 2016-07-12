@@ -35,7 +35,7 @@ public class DataBase {
   
   
   public static Logger logger = Logger.getLogger ("AutoCarTestLogger");
-  
+  public static Logger testDataLogger = Logger.getLogger ("AutoCarTestDataLogger");
 
   public DataBase (String xmlFilePath)
   {

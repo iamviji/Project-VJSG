@@ -51,7 +51,16 @@ public class AutoCarTestAlgoPlane {
         sensorMsgDispatcher.handleMsg (msg);
     }
     
-    public void reset (){
+    public void startTest (int vehicleLength, int vehicleWidth)
+    {
+        
+    }
+    public void stopTest ()
+    {
+    }
+    public void reset ()
+    {
+        ppEventListener.reset();
     }
     
     public void registerParallelParkingStateChangeListener (IParallelParkingTestStateChangeListener ppTestStChngListener)

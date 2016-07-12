@@ -10,7 +10,7 @@ package AutoCarTestCoreMain;
  * @author vikumar
  */
 public interface IAutoCarTestCoreService {
-    public void startTest (int vehicleLenght, int vehicleWidth);
+    public void startTest (int vehicleLength, int vehicleWidth);
     public void stopTest ();
     public void reset ();
     public void registerServiceCallBack (IAutoCarTestServiceCallBack callBack);
