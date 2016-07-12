@@ -72,6 +72,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
             {
                 print ("Vehicle arrived at Parallel Parking Stop Gate");
                 moveToStateAtGate (); 
+                stateChngListener.handleEventAtStopSensor();
             } else
             {
                 logger.warning ("Event is not handled");

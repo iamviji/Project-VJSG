@@ -10,5 +10,8 @@ import AlgoPlane.*;
  * @author vikumar
  */
 public class DummyAppl extends ParallelParkingTestStateChangeListener {
-    
+  public void handleEventAtStopSensor ()
+   {
+       System.out.println ("Apl:handleEventAtStopSensor");
+   }  
 }

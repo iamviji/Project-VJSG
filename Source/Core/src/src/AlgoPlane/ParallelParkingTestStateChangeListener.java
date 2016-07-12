@@ -14,6 +14,6 @@ public  abstract class ParallelParkingTestStateChangeListener  {
    private static Logger logger = DataBase.logger;
    public void handleEventAtStopSensor ()
    {
-       logger.info ("Default Event Handler");
+       logger.info ("handleEventAtStopSensor:Default Event Handler");
    }
 }
