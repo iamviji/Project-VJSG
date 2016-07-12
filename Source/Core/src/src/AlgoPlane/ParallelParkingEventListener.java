@@ -31,6 +31,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
     ParallelParkingState state;
     IParallelParkingTestStateChangeListener stateChngListener;
     int timerCount;
+    boolean activate;
     public void setAllSensor (IEventDispatcher stopSensor,
             IEventDispatcher rearLeftSensor,
             IEventDispatcher rearRightSensor,
@@ -48,6 +49,15 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
         this.sideSensor         = sideSensor;              
         this.state = ParallelParkingState.STATE_IDLE;     
         this.timerCount = 0;
+        this.activate = false;
+    }
+    public void reset ()
+    {
+        this.timer.stop ();
+        this.idleTimer.stop ();
+        this.state = ParallelParkingState.STATE_IDLE;     
+        this.timerCount = 0;
+        this.activate = false;
     }
     public void registerParallelParkingTestStateChangeListener (IParallelParkingTestStateChangeListener listener)
     {
@@ -55,6 +65,11 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
     }
     public void handleEvent (IEventDispatcher src, Event event)
     {
+        if (this.activate == false)
+        {
+            logger.warning("Event is ignored since not activated");
+            return;
+        }
         logger.info ("Entry , Src = " + src + " Event = "+event + " State="+this.state);
         if (state.equals (ParallelParkingState.STATE_IDLE))
         {
@@ -137,6 +152,11 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
     }
     public void handleTimeoutEvent (Timer timer)
     {
+        if (this.activate == false)
+        {
+            logger.warning("Time Out Event is ignored since not activated");
+            return;
+        }
         logger.info ("Currest state =" + this.state.name());
         logger.info ("TimetOut Event");
         if (this.state.equals (ParallelParkingState.STATE_AT_GATE))
