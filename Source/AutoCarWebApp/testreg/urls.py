@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^(?P<id>[0-9]+)/updatereg$', views.updatereg, name='updatereg'),
     url(r'^(?P<id>[0-9]+)/modifyreg$', views.modifyreg, name='modifyreg'),
     url(r'^(?P<id>[0-9]+)/detail$', views.detail, name='detail'),
+    url(r'^(?P<id>[0-9]+)/searchid', views.searchid, name='searchid'),
     url(r'^findreg$', views.findreg, name='findreg'),
     url(r'^searchreg', views.searchreg, name='searchreg'),
     url(r'^(?P<id>[0-9]+)/get_testdata', views.get_testdata, name='get_testdata'),

@@ -30,7 +30,7 @@ class Applicant(models.Model):
 def user_directory_path(instance, filename):
     applicant = instance.applicant
     user = applicant.FirstName + "_" + applicant.LastName + "_" + str(applicant.id)
-    return 'user_{0}/{1}/{2}'.format(user, instance.id, filename)
+    return 'data/{0}/{1}/{2}'.format(user, instance.id, filename)
     
 class Test(models.Model):
     applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
