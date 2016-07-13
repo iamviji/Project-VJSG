@@ -70,6 +70,11 @@ def modifyreg(request, id):
 	applicant.save()
 	return HttpResponseRedirect(reverse('testreg:detail', args=(id,)))
 
+def searchid(request, id):
+	applicant = get_object_or_404(Applicant, BiometricID=id)
+	context = {'applicant': applicant}
+	return render(request, 'testreg/applicant_details.html', context)
+
 def searchreg(request):
 	fname = request.POST['first_name']
 	lname = request.POST['last_name']
