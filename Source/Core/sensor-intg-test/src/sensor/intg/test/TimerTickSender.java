@@ -7,39 +7,19 @@ package sensor.intg.test;
 import java.io.*;
 import java.net.*;
 import java.util.*;
+import AutoCarTestCoreMain.*;
 /**
  *
  * @author vikumar
  */
 public class TimerTickSender extends TimerTask{
-  private DatagramSocket clientSocket;
-  private DatagramPacket sendPacket;
-  public void init (int port)
+  IAutoCarTestCoreService service;
+  public  TimerTickSender (IAutoCarTestCoreService service)
   {
-  try
-        {
-        clientSocket = new DatagramSocket();
-        InetAddress IPAddress = InetAddress.getByName("localhost");
-        String sentence = "TT";
-        byte[] sendData = sentence.getBytes();
-        sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, port);
-        }
-        catch (IOException e) 
-        { 
-         System.err.println("Could not open timer udp"); 
-         System.exit(1); 
-        } 
+      this.service = service;
   }
   public void run ()
   {
-    try
-    {
-        clientSocket.send(sendPacket);
-    }
-    catch (IOException e) 
-    { 
-         System.err.println("Could not open timer udp"); 
-         System.exit(1); 
-    }
+      service.giveTimerTick(); 
   }
 }

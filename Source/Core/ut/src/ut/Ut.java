@@ -4,17 +4,18 @@
  * and open the template in the editor.
  */
 package ut;
-import AutoCarTestCore.*;
+import Common.DataBase;
 import java.io.*;
 import java.util.logging.*;
 import java.lang.*;
 import java.util.concurrent.TimeUnit;
+import AlgoPlane.*;
 /**
  *
  * @author vikumar
  */
 public class Ut {
- private static Logger logger = Logger.getLogger ("AutoCarTestLogger");
+ private static Logger logger = DataBase.logger;
 
     /**
      * @param args the command line arguments
@@ -53,7 +54,6 @@ public class Ut {
         
         /* Timer Test */
         
-        TimerManager.resolution = 2000;
         /*
         TimerTester tester = new TimerTester ();
         Timer t1 = new Timer (tester);
