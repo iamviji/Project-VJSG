@@ -37,7 +37,7 @@ public class UserInfo extends AppCompatActivity {
         String uid = bundle.getString("uid");
 
         Toast.makeText(this, "Hello, creating new view", Toast.LENGTH_LONG).show();
-        String URL = "http://192.168.2.3:8000/testreg/" + uid +"/searchid";
+        String URL = "http://192.168.2.4:8000/testreg/" + uid +"/searchid";
         //String URL = "http://www.survivingwithandroid.com/2014/04/parsing-html-in-android-with-jsoup-2.html";
         new RequestTask().execute(URL);
         //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
