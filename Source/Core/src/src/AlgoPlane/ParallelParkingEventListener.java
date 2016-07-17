@@ -114,7 +114,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
             {
                 print ("PP_WARN_MOVEMENT_INSIDE : Movement inside Parking Area"); 
                 this.idleTimer.start (DataBase.PP_PARKING_IDLE_TIMEOUT);
-                stateChngListener.handleWarning (ParallelParkingState.STATE_AT_GATE,ParallelParkingWarning.PP_WARN_MOVEMENT_INSIDE);
+                stateChngListener.handleWarning (ParallelParkingState.STATE_PARKING,ParallelParkingWarning.PP_WARN_MOVEMENT_INSIDE);
             } else if ((src == this.sideSensor && event instanceof EventObjectIn)
                     ||
                     (event instanceof EventObjectTouched)
