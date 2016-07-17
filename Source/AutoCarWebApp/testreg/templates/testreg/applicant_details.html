@@ -1,4 +1,5 @@
 {% load staticfiles %}
+<meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="{% static 'testreg/style.css' %}" >
     <table width="450px">
     {% if applicant %}
@@ -12,7 +13,7 @@
             <font  face="Calibri" color="white" for="first_name">First Name:</font>
         </td>
         <td>
-            <font  face="Calibri" color="white" for="first_name"> {{ applicant.FirstName }}</font>
+            <font  face="Calibri" color="white" name="first_name"> {{ applicant.FirstName }}</font>
         </td>
         </tr>
         
@@ -21,7 +22,7 @@
             <font  face="Calibri" color="white" for="last_name">Last Name:</font>
         </td>
         <td>
-            <font  face="Calibri" color="white" for="first_name"> {{ applicant.LastName }}</font>
+            <font  face="Calibri" color="white" name="last_name"> {{ applicant.LastName }}</font>
         </td>
         </tr>
         
