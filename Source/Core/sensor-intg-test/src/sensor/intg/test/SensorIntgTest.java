@@ -31,7 +31,7 @@ private static Logger logger = DataBase.logger;
      */
     public static void main(String[] args) {
         
-        int port = 7000;
+        int port = 6000;
         DummyAppl apl = new DummyAppl ();
          AutoCarTestCoreMain core = new AutoCarTestCoreMain (port, apl, apl, "AutoCarTestLog.txt", "DataLog.Txt");
         TimerTickSender ttSender = new TimerTickSender (core);

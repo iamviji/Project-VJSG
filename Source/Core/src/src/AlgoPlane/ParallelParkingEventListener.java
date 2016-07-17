@@ -49,7 +49,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
         this.sideSensor         = sideSensor;              
         this.state = ParallelParkingState.STATE_IDLE;     
         this.timerCount = 0;
-        this.activate = false;
+        this.activate = true;
     }
     public void reset ()
     {
@@ -70,6 +70,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
             logger.warning("Event is ignored since not activated");
             return;
         }
+        
         logger.info ("Entry , Src = " + src + " Event = "+event + " State="+this.state);
         if (state.equals (ParallelParkingState.STATE_IDLE))
         {
@@ -80,7 +81,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
                 moveToStateAtGate ();                 
             } else
             {
-                logger.warning ("Event is not handled");
+                logger.warning ("Event is not handled: PP_WARN_UNHANDLED"+event);
                 stateChngListener.handleWarning (ParallelParkingState.STATE_IDLE,ParallelParkingWarning.PP_WARN_UNHANDLED);
             }
         } else if (this.state.equals(ParallelParkingState.STATE_AT_GATE))
@@ -100,7 +101,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
                 print ("Object Touched so failed");
             } else
             {
-                logger.warning ("Event is not handled");
+                logger.warning ("Event is not handled PP_WARN_UNHANDLED"+event);
                 stateChngListener.handleWarning (ParallelParkingState.STATE_AT_GATE,ParallelParkingWarning.PP_WARN_UNHANDLED);
 
             }
@@ -111,9 +112,9 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
                     src == this.rearRightSnesor) &&
                     (event instanceof EventObjectMoved || event instanceof EventObjectEntered ))
             {
-                print ("Movement inside Parking Area"); 
+                print ("PP_WARN_MOVEMENT_INSIDE : Movement inside Parking Area"); 
                 this.idleTimer.start (DataBase.PP_PARKING_IDLE_TIMEOUT);
-                stateChngListener.handleWarning (ParallelParkingState.STATE_AT_GATE,ParallelParkingWarning.PP_WARN_MOVEMENT_INSIDE);
+                stateChngListener.handleWarning (ParallelParkingState.STATE_PARKING,ParallelParkingWarning.PP_WARN_MOVEMENT_INSIDE);
             } else if ((src == this.sideSensor && event instanceof EventObjectIn)
                     ||
                     (event instanceof EventObjectTouched)
@@ -124,6 +125,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
                     stateChngListener.handleFailInd (ParallelParkingState.STATE_PARKING, FailReason.FAIL_REASON_TOUCH);
             } else
             {
+                logger.warning ("Event is not handled PP_WARN_UNHANDLED"+event);
                 stateChngListener.handleWarning (ParallelParkingState.STATE_PARKING,ParallelParkingWarning.PP_WARN_UNHANDLED);
             }
         } else if (this.state.equals(ParallelParkingState.STATE_PARKED))
@@ -142,11 +144,12 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
                 moveToStatePassed ();                
             } else
             {
+                logger.warning ("Event is not handled PP_WARN_UNHANDLED"+event);
                 stateChngListener.handleWarning (ParallelParkingState.STATE_PARKED,ParallelParkingWarning.PP_WARN_UNHANDLED);
             }
         } else
         {
-            logger.warning ("Unhandled event");
+            logger.warning ("Unhandled event-invalid state"+event);
     
         }
     }
@@ -165,7 +168,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
             {
                 if (this.timerCount < DataBase.PP_NO_OF_PARKING_ENTRY_WARNING)
                 {
-                    print ("Warning : Park as early as possible");
+                    print ("Warning : PP_WARN_ENTRY : Park as early as possible");
                     this.timer.start (DataBase.PP_PARKING_ENTRY_TIMEOUT);
                     this.timerCount++;
                     stateChngListener.handleWarning (ParallelParkingState.STATE_AT_GATE,ParallelParkingWarning.PP_WARN_ENTRY);
@@ -177,6 +180,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
                 }
             } else
             {
+                logger.warning ("Event is not handled PP_WARN_UNHANDLED"+timer);
                 stateChngListener.handleWarning (ParallelParkingState.STATE_AT_GATE,ParallelParkingWarning.PP_WARN_UNHANDLED);
             }
         } else if (this.state.equals (ParallelParkingState.STATE_PARKING))
@@ -188,16 +192,17 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
                 +" RR:"+this.rearRightSnesor.getCurDistance()+" RL:"+this.rearLeftSensor.getCurDistance()
                 );
                 
-                int frGap = this.frontRightSensor.getCurDistance();
-                int flGap = this.frontRightSensor.getCurDistance();
+                int frGap = 0;//this.frontRightSensor.getCurDistance();
+                int flGap = 0;//this.frontRightSensor.getCurDistance();
                 int rrGap = this.rearRightSnesor.getCurDistance();
                 int rlGap = this.rearLeftSensor.getCurDistance();
                 
-                int frAngle = Math.abs(frGap-flGap);
+                int frAngle = 0;// Math.abs(frGap-flGap);
                 int rrAngle = Math.abs(rrGap-rlGap);
                 int vehicleLength = DataBase.PP_PARK_AREA_LENGTH - frGap - rrGap; 
                 
                 if (rrAngle < DataBase.PP_VERIFY_ANGLE && vehicleLength > DataBase.PP_VEHICLE_MIN_LENGTH)
+                //if (rrGap < INTR_DETECTION_SIDE_THRESHOLD_2 && rlGap < )
                 {
                     moveToStateParked ();
                     print ("Parking Complete. Move to next test angle="+rrAngle+" vehicle length="+vehicleLength);
@@ -212,7 +217,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
                 logger.info ("parking timer");
                 if (this.timerCount < DataBase.PP_NO_OF_PARKING_WARNING)
                 {
-                    print ("Warning : Park as early as possible");
+                    print ("Warning : PP_WARN_PARK: Park as early as possible");
                     this.timer.start (DataBase.PP_PARKING_TIMEOUT);
                     this.timerCount++;
                     stateChngListener.handleWarning (ParallelParkingState.STATE_PARKING,ParallelParkingWarning.PP_WARN_PARK);
@@ -227,7 +232,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
         {
             if (this.timerCount < DataBase.PP_NO_OF_PARKING_EXIT_WARNING)
             {
-                print ("Warning : Exit as early as possible");
+                print ("Warning: PP_WARN_EXIT : Exit as early as possible");
                 this.timer.start (DataBase.PP_PARKING_EXIT_TIMEOUT);
                 this.timerCount++;
                 stateChngListener.handleWarning (ParallelParkingState.STATE_PARKED,ParallelParkingWarning.PP_WARN_EXIT);
@@ -239,7 +244,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
             } 
         } else
         {
-            logger.warning ("Unhandled event");
+            logger.warning ("Unhandled event: invalid state"+timer);
         }
     }
     
@@ -292,7 +297,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
     } 
     private void print (String str)
     {
-        System.out.println (str);
+        //System.out.println (str);
         logger.info (str);
     }
     
