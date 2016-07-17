@@ -131,7 +131,7 @@ public class AutoCarTestCoreMain implements IAutoCarTestCoreService{
                 DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
                 serverSocket.receive(receivePacket);
                 String sentence = new String(receiveData, 0, receivePacket.getLength());
-                System.out.println("RECEIVED: " + sentence);
+                //System.out.println("RECEIVED: " + sentence);
                   
                 logger.info ("Reading Line : " + sentence);
                 String str [] = sentence.split (":");
@@ -142,11 +142,13 @@ public class AutoCarTestCoreMain implements IAutoCarTestCoreService{
                 } else if (str[0].equals("DI"))
                 {
                     //System.out.println("handling msg");
+                    System.out.println("RECEIVED: " + sentence);
                     dataLogger.info(sentence);
                     algoPlane.handleSensorMsg(sentence);
                 } else
                 {
-                    System.out.println ("Unhandled"+str[0]);
+                    //System.out.println ("Unhandled"+str[0]);
+                    logger.info("UnHandled"+str[0]);
                 }
             }                        
         }

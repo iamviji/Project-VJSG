@@ -15,12 +15,12 @@ public class AutoCarTestAlgoPlane {
     private static Logger logger = DataBase.logger;
     ParallelParkingEventListener ppEventListener = new ParallelParkingEventListener ();
     IntrDetectionSensorMsgListener ppEntrySensor;
-    IntrDetectionSensorMsgListener ppStopSensor = new IntrDetectionSensorMsgListener  (ppEventListener, "P.GST");
+    IntrDetectionSensorMsgListener ppStopSensor = new IntrDetectionSensorMsgListener  (ppEventListener, "P.GST", DataBase.INTR_DETECTION_GATE_THRESHOLD);
     ProximitySensorMsgListener ppRearLeftSensor = new ProximitySensorMsgListener (ppEventListener, "P.RL");
     ProximitySensorMsgListener ppRearRightSensor = new ProximitySensorMsgListener (ppEventListener, "P.RR");
     ProximitySensorMsgListener ppFrontLeftSensor = new ProximitySensorMsgListener (ppEventListener, "P.FL");
     ProximitySensorMsgListener ppFrontRightSensor = new ProximitySensorMsgListener (ppEventListener, "P.FR");
-    IntrDetectionSensorMsgListener ppSideSensor = new IntrDetectionSensorMsgListener  (ppEventListener, "P.SD");;
+    IntrDetectionSensorMsgListener ppSideSensor = new IntrDetectionSensorMsgListener  (ppEventListener, "P.SD", DataBase.INTR_DETECTION_SIDE_THRESHOLD);
 
        
     IParallelParkingTestStateChangeListener ppTestStChngListener;

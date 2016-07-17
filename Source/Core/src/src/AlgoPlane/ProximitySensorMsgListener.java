@@ -45,9 +45,8 @@ public class ProximitySensorMsgListener extends SensorMsgListener {
     }
     public void handleSensorMsg (String msg)
     {
-        logger.info ("Entry");
+        logger.info ("Entry->"+msg);
         String str [] = msg.split (":");
-        
         this.curDistance = Integer.parseInt (str [2]);
         logger.info ("update cur distance="+this.curDistance);
         if (state.equals(State.STATE_IDLE))

@@ -23,10 +23,12 @@ public class IntrDetectionSensorMsgListener extends SensorMsgListener {
     };
 
     State state;
-    public IntrDetectionSensorMsgListener (IEventListener eventListener, String name)
+    int threshold;
+    public IntrDetectionSensorMsgListener (IEventListener eventListener, String name, int threshold)
     {
         super (eventListener, name);
         this.reset ();
+        this.threshold = threshold;
     }
     protected void reset ()
     {
@@ -45,7 +47,7 @@ public class IntrDetectionSensorMsgListener extends SensorMsgListener {
         if (state.equals (State.STATE_IDLE))
         {
             logger.info ("Curent state is IDLE");
-            if (curDistance < DataBase.INTR_DETECTION_SIDE_THRESHOLD)
+            if (curDistance < threshold)
             {
                 moveToSensedState (); 
                 this.eventListener.handleEvent(this, new EventObjectIn ());
@@ -56,7 +58,7 @@ public class IntrDetectionSensorMsgListener extends SensorMsgListener {
         } else if (state.equals(State.STATE_SENSED))
         {
             logger.info ("Curent state is SENSED");
-            if (curDistance >= DataBase.INTR_DETECTION_SIDE_THRESHOLD)
+            if (curDistance >= threshold)
             {
                 moveToIdleState (); 
                 this.eventListener.handleEvent(this, new EventObjectOut ());
