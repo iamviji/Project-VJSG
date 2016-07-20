@@ -18,7 +18,7 @@ public class DummyAppl implements IParallelParkingTestStateChangeListener, ISens
     {
         System.out.println ("Apl:handleWarning state="+state+" warn="+warn);
     }
-        public void handlePassInd()
+    public void handlePassInd()
     {
         System.out.println ("Apl:handlePassInd");
     }

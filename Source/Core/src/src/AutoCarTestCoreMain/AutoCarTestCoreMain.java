@@ -33,12 +33,13 @@ public class AutoCarTestCoreMain implements IAutoCarTestCoreService{
     private DatagramSocket clientSocket;
     private DatagramPacket sendPacket;
     private int port;
-    
+    private TimerTickSender ttSender;
     public AutoCarTestCoreMain (int port, IParallelParkingTestStateChangeListener ppTestChgListener, ISensorStateChangeListener stChgListener,
     String logFilePath, String dataFilePath)
     {
         this.algoPlane = new AutoCarTestAlgoPlane ();
         this.ctrlPlane = new AutoCarTestCtrlPlane ();
+        this.ttSender = new TimerTickSender (this);
         //this.algoPlane.registerParallelParkingStateChangeListener (this.ctrlPlane); For demo not required
         this.algoPlane.registerParallelParkingStateChangeListener(ppTestChgListener); // for demo let application listen it directly
         this.algoPlane.registerSensorStateChangeListener (stChgListener);             // For demon in final system may control plane handle it
@@ -117,7 +118,9 @@ public class AutoCarTestCoreMain implements IAutoCarTestCoreService{
     {}
     public void run ()
     {
-           System.out.println("xxx");
+        java.util.Timer timer = new java.util.Timer ();
+        timer.schedule(this.ttSender, 1000,1000);
+        System.out.println("xxx");
         try 
         {
             DatagramSocket serverSocket = new DatagramSocket(port);

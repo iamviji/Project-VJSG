@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package sensor.intg.test;
+import AutoCarTestCoreMain.TimerTickSender;
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -33,11 +34,10 @@ private static Logger logger = DataBase.logger;
         
         int port = 6000;
         DummyAppl apl = new DummyAppl ();
-         AutoCarTestCoreMain core = new AutoCarTestCoreMain (port, apl, apl, "AutoCarTestLog.txt", "DataLog.Txt");
-        TimerTickSender ttSender = new TimerTickSender (core);
+        AutoCarTestCoreMain core = new AutoCarTestCoreMain (port, apl, apl, "AutoCarTestLog.txt", "DataLog.Txt");
+        //TimerTickSender ttSender = new TimerTickSender (core);
         
-        java.util.Timer timer = new java.util.Timer ();
-        timer.schedule(ttSender, 1000,1000);
+        
         core.run ();
          
     }
