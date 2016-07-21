@@ -3,8 +3,10 @@ package autorto.autodrivingtest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -42,7 +44,11 @@ public class UserInfo extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         String uid = bundle.getString("uid");
 
-        String URL = "http://192.168.2.5:8000/testreg/" + uid +"/searchid";
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(UserInfo.this);
+        String addr = prefs.getString("server_addr", "192.168.2.5");
+        String port = prefs.getString("server_port", "8000");
+
+        String URL = "http://" + addr + ":" + port +"/testreg/" + uid +"/searchid";
         //String URL = "http://www.survivingwithandroid.com/2014/04/parsing-html-in-android-with-jsoup-2.html";
         //Boolean connected = HTTPGet.isConnectionOK(URL);
         new RequestTask(this).execute(URL);
@@ -127,6 +133,8 @@ public class UserInfo extends AppCompatActivity {
             Log.d(html, "HttpGET");
             if (html == FAILED_CONNECTON) {
                 onProgressUpdate("Unable to connect to the webserver");
+                Intent intent = new Intent(myActivity, PrefsActivity.class);
+                startActivity(intent);
                 return;
             }
             if (html.isEmpty()) {

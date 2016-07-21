@@ -35,6 +35,7 @@ public class AutoCarTestCoreMain implements IAutoCarTestCoreService{
     private DatagramPacket sendStopPacket;
     private int port;
     private Boolean startFlag = false;
+    private Boolean stopServer = false;
     private java.util.Timer timer;
     public AutoCarTestCoreMain (int port, IParallelParkingTestStateChangeListener ppTestChgListener, ISensorStateChangeListener stChgListener,
     String logFilePath, String dataFilePath) throws IOException
@@ -119,15 +120,7 @@ public class AutoCarTestCoreMain implements IAutoCarTestCoreService{
     }
     public void stopTest () throws IOException
     {
-        try
-        {
-            clientSocket.send(sendStopPacket);
-        }
-        catch (IOException e) 
-        { 
-           System.err.println("Could not send timer tick. Exception"); 
-           throw e;
-        }
+        stopServer = true;
     }
     public void registerServiceCallBack (IAutoCarTestServiceCallBack callBack)
     {}
@@ -154,7 +147,7 @@ public class AutoCarTestCoreMain implements IAutoCarTestCoreService{
                   
                 logger.info ("Reading Line : " + sentence);
                 String str [] = sentence.split (":");
-                if (str[0].equals("STOP"))
+                if (str[0].equals("STOP") || stopServer)
                 {
                     timer.cancel();
                     this.algoPlane.reset();

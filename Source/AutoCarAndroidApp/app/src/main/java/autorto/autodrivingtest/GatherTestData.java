@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.IOException;
 
 import AlgoPlane.FailReason;
 import AlgoPlane.IParallelParkingTestStateChangeListener;
@@ -63,14 +64,21 @@ public class GatherTestData extends AppCompatActivity {
             String logFile = dataDir.toString() + "/AutoCarTestLog.txt";
             String dataFile = dataDir.toString() + "/DataLog.txt";
             Log.d("Storing the data in file:" + dataFile, "StartTest");
-            core = new AutoCarTestCoreMain (port, this, this, logFile , dataFile);
-            core.run();
+            try {
+                core = new AutoCarTestCoreMain(port, this, this, logFile, dataFile);
+                core.run();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             return dataFile;
         }
 
         public void stopTest() {
-            core.stopTest();
-            core = null;
+            try {
+                core.stopTest();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         @Override
         protected void onPreExecute() {}
@@ -91,14 +99,9 @@ public class GatherTestData extends AppCompatActivity {
             startActivity(intent);
         }
 
-        public void handleEventStateChange (ParallelParkingState curState, ParallelParkingState prevState)
-        {
-            System.out.println ("Apl:handleStateChange curState="+curState + " prevState="+prevState);
-        }
-        public void handleWarning (ParallelParkingState state, ParallelParkingWarning warn)
-        {
-            System.out.println ("Apl:handleWarning state="+state+" warn="+warn);
-        }
+        public void handleEventStateChange (ParallelParkingState s1, ParallelParkingState s2)    {}
+        public void handleWarning (ParallelParkingState state, ParallelParkingWarning warn) {}
+        public void handleSensorStateChangeInd (String str, boolean isActive) {}
         public void handlePassInd()
         {
             System.out.println ("Apl:handlePassInd");
@@ -106,10 +109,6 @@ public class GatherTestData extends AppCompatActivity {
         public void handleFailInd(ParallelParkingState state, FailReason reason)
         {
             System.out.println ("Apl:handleFailInd state="+state+" reason="+reason);
-        }
-        public void handleSensorStateChangeInd (String str, boolean isActive)
-        {
-            System.out.println ("Apl:handleSensorStateChangeInd sensor="+str+" isActive="+isActive);
         }
     }
 }
