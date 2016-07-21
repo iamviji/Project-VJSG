@@ -61,6 +61,12 @@ public class AutoCarTestAlgoPlane {
     public void reset ()
     {
         ppEventListener.reset();
+        ppStopSensor.reset();
+        ppFrontRightSensor.reset();
+        ppFrontLeftSensor.reset();
+        ppRearRightSensor.reset();
+        ppRearLeftSensor.reset();
+        ppSideSensor.reset();
     }
     
     public void registerParallelParkingStateChangeListener (IParallelParkingTestStateChangeListener ppTestStChngListener)

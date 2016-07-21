@@ -37,6 +37,7 @@ public class ProximitySensorMsgListener extends SensorMsgListener {
     }
     protected void reset ()
     {
+            super.reInit();
             this.moveToIdleState ();
     }
     public int getCurDistance ()

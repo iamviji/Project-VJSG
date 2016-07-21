@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AlgoPlane;
+package AutoCarTestCoreMain;
 
 /**
  *
  * @author vikumar
  */
-public interface ISensorStateChangeListener {
-    public void handleSensorStateChangeInd (String sensorId, boolean isActive);
+public class AutoCarTestCoeException extends Exception{
+    
 }

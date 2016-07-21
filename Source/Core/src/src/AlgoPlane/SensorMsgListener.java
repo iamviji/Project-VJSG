@@ -30,7 +30,10 @@ enum State
 Timer timer;
 protected State state;
 abstract protected void reset ();
-
+protected void reInit ()
+{
+    this.state = State.SENSOR_STATE_IDLE;    
+}
 public SensorMsgListener (IEventListener eventListener, String name)
 {
      //this.timerTick = 0;

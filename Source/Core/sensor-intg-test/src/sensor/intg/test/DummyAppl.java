@@ -26,8 +26,8 @@ public class DummyAppl implements IParallelParkingTestStateChangeListener, ISens
     {
         System.out.println ("Apl:handleFailInd state="+state+" reason="+reason);
     }
-    public void handleSensorStateChangeInd (String str, boolean isActive)
+    public void handleSensorStateChangeInd (String sensorId, boolean isActive)
     {
-        System.out.println ("Apl:handleSensorStateChangeInd sensor="+str+" isActive="+isActive);
+        System.out.println ("Apl:handleSensorStateChangeInd sensor="+sensorId+" isActive="+isActive);
     }
 }

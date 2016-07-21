@@ -2,7 +2,7 @@ import socket
 import sys
 import time
 UDP_IP = "127.0.0.1"
-UDP_PORT = 7000 
+UDP_PORT = 6000 
 MESSAGE = "Hello, World! VI"
 
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP

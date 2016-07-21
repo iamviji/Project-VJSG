@@ -34,11 +34,28 @@ private static Logger logger = DataBase.logger;
         
         int port = 6000;
         DummyAppl apl = new DummyAppl ();
+        try
+        {
         AutoCarTestCoreMain core = new AutoCarTestCoreMain (port, apl, apl, "AutoCarTestLog.txt", "DataLog.Txt");
+        core.run ();
+        System.out.println ("Next Turn\n");
+        Thread.sleep(5000);
+        core.run ();
+        System.out.println ("Next Turn\n");
+        Thread.sleep(5000);
+        core.run ();
+        }
+        catch (IOException e)
+        {
+            System.out.println("EXCEPTION");
+        }
+        catch (InterruptedException e )
+        {
+        }
         //TimerTickSender ttSender = new TimerTickSender (core);
         
         
-        core.run ();
+        
          
     }
 }

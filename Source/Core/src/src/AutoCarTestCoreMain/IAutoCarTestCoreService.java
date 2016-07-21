@@ -5,16 +5,18 @@
  */
 package AutoCarTestCoreMain;
 
+import java.io.IOException;
+
 /**
  *
  * @author vikumar
  */
 public interface IAutoCarTestCoreService {
     public void startTest (int vehicleLength, int vehicleWidth);
-    public void stopTest ();
+    public void stopTest () throws IOException;
     public void reset ();
     public void registerServiceCallBack (IAutoCarTestServiceCallBack callBack);
-    public void run ();
+    public void run () throws IOException;
     public void handleMsg (String str);
     public void giveTimerTick ();
     public void configure (String xmlPath);

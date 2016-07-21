@@ -57,7 +57,7 @@ public class ParallelParkingEventListener implements IEventListener, ITimeOutEve
         this.idleTimer.stop ();
         this.state = ParallelParkingState.STATE_IDLE;     
         this.timerCount = 0;
-        this.activate = false;
+        //this.activate = false;
     }
     public void registerParallelParkingTestStateChangeListener (IParallelParkingTestStateChangeListener listener)
     {

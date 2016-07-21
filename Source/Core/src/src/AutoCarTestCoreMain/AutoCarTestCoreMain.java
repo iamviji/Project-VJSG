@@ -31,19 +31,21 @@ public class AutoCarTestCoreMain implements IAutoCarTestCoreService{
     private static Logger logger = DataBase.logger;
     private static Logger dataLogger = DataBase.testDataLogger;
     private DatagramSocket clientSocket;
-    private DatagramPacket sendPacket;
+    private DatagramPacket sendTickPacket;
+    private DatagramPacket sendStopPacket;
     private int port;
-    private TimerTickSender ttSender;
+    private Boolean startFlag = false;
+    private java.util.Timer timer;
     public AutoCarTestCoreMain (int port, IParallelParkingTestStateChangeListener ppTestChgListener, ISensorStateChangeListener stChgListener,
-    String logFilePath, String dataFilePath)
+    String logFilePath, String dataFilePath) throws IOException
     {
         this.algoPlane = new AutoCarTestAlgoPlane ();
         this.ctrlPlane = new AutoCarTestCtrlPlane ();
-        this.ttSender = new TimerTickSender (this);
         //this.algoPlane.registerParallelParkingStateChangeListener (this.ctrlPlane); For demo not required
         this.algoPlane.registerParallelParkingStateChangeListener(ppTestChgListener); // for demo let application listen it directly
         this.algoPlane.registerSensorStateChangeListener (stChgListener);             // For demon in final system may control plane handle it
         this.port = port;
+        
         logger.setUseParentHandlers(false);
         dataLogger.setUseParentHandlers(false);
         Handler[] handlers = logger.getHandlers();
@@ -91,7 +93,7 @@ public class AutoCarTestCoreMain implements IAutoCarTestCoreService{
         catch (IOException e) 
         { 
          System.err.println("Could not do file handler"); 
-         System.exit(1); 
+         throw e; 
         }
         
         try
@@ -100,27 +102,41 @@ public class AutoCarTestCoreMain implements IAutoCarTestCoreService{
             InetAddress IPAddress = InetAddress.getByName("localhost");
             String sentence = "TT";
             byte[] sendData = sentence.getBytes();
-            sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, port);
+            sendTickPacket = new DatagramPacket(sendData, sendData.length, IPAddress, port);
+            String stopSentence = "STOP";
+            byte[] stopData = stopSentence.getBytes ();
+            sendStopPacket = new DatagramPacket(stopData, stopData.length, IPAddress, port);
         }
         catch (IOException e) 
         { 
             System.err.println("Could not open timer udp."); 
-            System.exit(1); 
+            throw e;
         }
     }
     public void startTest (int vehicleLength, int vehicleWidth)
     {
     
     }
-    public void stopTest ()
-    {}
+    public void stopTest () throws IOException
+    {
+        try
+        {
+            clientSocket.send(sendStopPacket);
+        }
+        catch (IOException e) 
+        { 
+           System.err.println("Could not send timer tick. Exception"); 
+           throw e;
+        }
+    }
     public void registerServiceCallBack (IAutoCarTestServiceCallBack callBack)
     {}
-    public void run ()
+    public void run () throws IOException
     {
-        java.util.Timer timer = new java.util.Timer ();
-        timer.schedule(this.ttSender, 1000,1000);
-        System.out.println("xxx");
+        //System.out.println("xxx");
+        this.timer = new java.util.Timer ();
+        this.timer.schedule(new TimerTickSender (this), 1000,1000);
+        //System.out.println("xxx");
         try 
         {
             DatagramSocket serverSocket = new DatagramSocket(port);
@@ -134,11 +150,19 @@ public class AutoCarTestCoreMain implements IAutoCarTestCoreService{
                 DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
                 serverSocket.receive(receivePacket);
                 String sentence = new String(receiveData, 0, receivePacket.getLength());
-                //System.out.println("RECEIVED: " + sentence);
+                System.out.println("RECEIVED: " + sentence);
                   
                 logger.info ("Reading Line : " + sentence);
                 String str [] = sentence.split (":");
-                if (str[0].equals("TT"))
+                if (str[0].equals("STOP"))
+                {
+                    timer.cancel();
+                    this.algoPlane.reset();
+                    serverSocket.close();
+                    System.out.println ("Stoped");
+                    logger.info("Stopped");
+                    break;
+                } else if (str[0].equals("TT"))
                 {
                     //System.out.println("giving tick");
                     TimerManager.giveTick();
@@ -150,7 +174,7 @@ public class AutoCarTestCoreMain implements IAutoCarTestCoreService{
                     algoPlane.handleSensorMsg(sentence);
                 } else
                 {
-                    //System.out.println ("Unhandled"+str[0]);
+                    System.out.println ("Unhandled"+str[0]);
                     logger.info("UnHandled"+str[0]);
                 }
             }                        
@@ -158,7 +182,7 @@ public class AutoCarTestCoreMain implements IAutoCarTestCoreService{
         catch (IOException e) 
         { 
             System.err.println("Could not open udp to receive"); 
-            System.exit(1); 
+            throw e;
         }
     }
     public void handleMsg (String str)
@@ -167,12 +191,12 @@ public class AutoCarTestCoreMain implements IAutoCarTestCoreService{
     {
         try
         {
-            clientSocket.send(sendPacket);
+            clientSocket.send(sendTickPacket);
         }
         catch (IOException e) 
         { 
-            System.err.println("Could not open timer udp"); 
-            System.exit(1); 
+            System.err.println("Could not send timer tick. Exception"); 
+           // throw e;
         }
     }
    public void configure (String xmlPath)
