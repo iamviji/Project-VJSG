@@ -1,5 +1,8 @@
 package autorto.autodrivingtest;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,31 +19,38 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.IOException;
+
 
 public class UserInfo extends AppCompatActivity {
 
     public void detailsDisplayHandler(View target) {
-        //String URL = "http://127.0.0.1:8000/testreg/12345680/searchid";
-        //String result=HTTPGet.getURL(URL);
-       // TextView txtView=(TextView)findViewById(R.id.name);
-        //txtView.setText(result);
+        Intent intent = new Intent(this, GatherTestData.class);
+        TextView textView = (TextView) findViewById(R.id.id);
+        String uid = textView.getText().toString();
+        Bundle bundle = new Bundle();
+        bundle.putString("uid", uid);
+        intent.putExtras(bundle);
+        Toast.makeText(this, "Start the test:", Toast.LENGTH_LONG).show();
+        startActivity(intent);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_info);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         Bundle bundle = getIntent().getExtras();
         String uid = bundle.getString("uid");
 
-        Toast.makeText(this, "Hello, creating new view", Toast.LENGTH_LONG).show();
-        String URL = "http://192.168.2.4:8000/testreg/" + uid +"/searchid";
+        String URL = "http://192.168.2.5:8000/testreg/" + uid +"/searchid";
         //String URL = "http://www.survivingwithandroid.com/2014/04/parsing-html-in-android-with-jsoup-2.html";
-        new RequestTask().execute(URL);
+        //Boolean connected = HTTPGet.isConnectionOK(URL);
+        new RequestTask(this).execute(URL);
         //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        setContentView(R.layout.activity_user_info);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
     @Override
@@ -65,7 +75,17 @@ public class UserInfo extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    class RequestTask extends AsyncTask<String, Void, String> {
+    public void cancelTestStartHandler(View target) {
+        Intent intent = new Intent(this, StartTest.class);
+        startActivity(intent);
+    }
+
+    class RequestTask extends AsyncTask<String, String, String> {
+        public String FAILED_CONNECTON = "FailedConnection";
+        private AppCompatActivity myActivity;
+        public RequestTask(AppCompatActivity activity) {
+            myActivity = activity;
+        }
         @Override
         protected String doInBackground(String... urls) {
             //String response = HTTPGet.getData(urls[0]);
@@ -75,21 +95,57 @@ public class UserInfo extends AppCompatActivity {
                 Document doc = Jsoup.connect(urls[0]).get();
                 buffer.append(doc.html());
             }
-            catch(Throwable t) {
-                t.printStackTrace();
+            catch(IOException e) {
+                e.printStackTrace();
+                publishProgress("Unable to connect to the webserver");
+                return FAILED_CONNECTON;
             }
 
             return buffer.toString();
+        }
+
+        @SuppressWarnings("unchecked")
+        @Override
+        protected void onProgressUpdate(String... item) {
+            String errorText = item[0];
+            AlertDialog.Builder builder = new AlertDialog.Builder(myActivity);
+            builder.setMessage(errorText)
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Intent intent = new Intent(myActivity, StartTest.class);
+                            startActivity(intent);
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
         }
 
         @Override
         protected void onPostExecute(String html) {
             Log.d("In background onPostExecute", "HttpGET");
             Log.d(html, "HttpGET");
+            if (html == FAILED_CONNECTON) {
+                onProgressUpdate("Unable to connect to the webserver");
+                return;
+            }
+            if (html.isEmpty()) {
+                onProgressUpdate("The specified ID doesn't exist");
+                return;
+            }
+
             Document doc = Jsoup.parse(html);
             super.onPostExecute(html);
 
-            Element fname = doc.select("font[name=first_name]").first();
+            Elements fnames = doc.select("font[name=first_name]");
+            Element fname = null;
+            if (fnames.isEmpty() || fnames.size() < 1) {
+                onProgressUpdate("The specified ID doesn't exist");
+                return;
+            } else {
+                fname = fnames.first();
+            }
+
             Element lname = doc.select("font[name=last_name]").first();
             String name = fname.text() + " " + lname.text();
             TextView txtView1 = (TextView) findViewById(R.id.name);
@@ -106,8 +162,5 @@ public class UserInfo extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {}
-
-        @Override
-        protected void onProgressUpdate(Void... values) {}
     }
 }

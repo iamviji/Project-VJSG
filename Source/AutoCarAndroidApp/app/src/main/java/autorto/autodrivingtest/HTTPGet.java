@@ -42,6 +42,19 @@ class HTTPGet {
         return response.toString();
     }
 
+    public static Boolean isConnectionOK(String uri) {
+        try {
+            URL url = new URL(uri);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.connect();
+            return (conn.getResponseCode() == HttpsURLConnection.HTTP_OK);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public static String getData(String uri) {
         Log.d("Starting task", "HttpGET");
         String responseString = null;

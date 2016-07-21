@@ -2,6 +2,7 @@ package autorto.autodrivingtest;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +23,7 @@ public class StartTest extends AppCompatActivity {
         setContentView(R.layout.activity_start_test);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
     }
     public void testVerificationHandler(View target) {
@@ -33,9 +34,6 @@ public class StartTest extends AppCompatActivity {
         bundle.putString("uid", uid);
         intent.putExtras(bundle);
         startActivity(intent);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-        // Do stuff
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -53,7 +51,8 @@ public class StartTest extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent settingsIntent = new Intent(this, PrefsActivity.class);
+            startActivity(settingsIntent);
         }
 
         return super.onOptionsItemSelected(item);
