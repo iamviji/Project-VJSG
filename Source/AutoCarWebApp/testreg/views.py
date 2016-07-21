@@ -71,9 +71,12 @@ def modifyreg(request, id):
 	return HttpResponseRedirect(reverse('testreg:detail', args=(id,)))
 
 def searchid(request, id):
-	applicant = get_object_or_404(Applicant, BiometricID=id)
-	context = {'applicant': applicant}
-	return render(request, 'testreg/applicant_details.html', context)
+	try:
+		applicant = Applicant.objects.get(BiometricID=id)
+		context = {'applicant': applicant}
+		return render(request, 'testreg/applicant_details.html', context)
+	except Applicant.DoesNotExist:
+		return render(request, 'testreg/applicant_details.html')
 
 def searchreg(request):
 	fname = request.POST['first_name']
