@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -50,6 +48,7 @@ public class GatherTestData extends AppCompatActivity {
     class GatherSensorData extends AsyncTask<String, Void, String> implements IParallelParkingTestStateChangeListener, ISensorStateChangeListener {
         private AutoCarTestCoreMain core;
         private AppCompatActivity myActivity;
+        private String testResult = "Incomplete";
         public GatherSensorData(AppCompatActivity activity) {
             myActivity = activity;
         }
@@ -80,12 +79,13 @@ public class GatherTestData extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+
         @Override
         protected void onPreExecute() {}
         @Override
         protected void onPostExecute(String result) {
             AlertDialog.Builder builder = new AlertDialog.Builder(myActivity);
-            builder.setMessage("Test complete, see your result in " + result)
+            builder.setMessage("Test Result: " + testResult + ", Uploading data to server...")
                     .setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
@@ -95,8 +95,6 @@ public class GatherTestData extends AppCompatActivity {
                     });
             AlertDialog alert = builder.create();
             alert.show();
-            Intent intent = new Intent(myActivity, StartTest.class);
-            startActivity(intent);
         }
 
         public void handleEventStateChange (ParallelParkingState s1, ParallelParkingState s2)    {}
@@ -104,11 +102,13 @@ public class GatherTestData extends AppCompatActivity {
         public void handleSensorStateChangeInd (String str, boolean isActive) {}
         public void handlePassInd()
         {
-            System.out.println ("Apl:handlePassInd");
+            testResult = "Passed";
+            Log.d("Apl:handlePassInd", "StartTest");
         }
         public void handleFailInd(ParallelParkingState state, FailReason reason)
         {
-            System.out.println ("Apl:handleFailInd state="+state+" reason="+reason);
+            testResult = "Failed";
+            Log.d("Apl:handleFailInd state="+state+" reason="+reason, "StartTest");
         }
     }
 }

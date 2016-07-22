@@ -118,7 +118,7 @@ public class AutoCarTestCoreMain implements IAutoCarTestCoreService{
     {
     
     }
-    public void stopTest () throws IOException
+    public void stopTest ()
     {
         stopServer = true;
     }
